@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
+using UnityEngine;
 
 public class Card
 {
@@ -34,15 +36,34 @@ public class Card
 
 public class Deck
 {
-    public readonly List<Card> Cards;
+    public List<Card> Cards { get; private set; }
 
-    public Deck(int jokers = 0)
+	public Deck(int decks = 1, int jokersPerDeck = 0)
     {
-		for (int suit = 0; suit < 4; suit++)
-			for (int rank = 0; rank < 13; rank++)
-				Cards.Add(new((Card.Suit)suit, (Card.Rank)rank));
+		for (decks = Mathf.Abs(decks); decks > 0; decks--)
+		{
+			for (int suit = 0; suit < 4; suit++)
+				for (int rank = 0; rank < 13; rank++)
+					Cards.Add(new((Card.Suit)suit, (Card.Rank)rank));
 
-		for (; jokers > 0; jokers--)
-			Cards.Add(new(Card.Rank.Joker));
+			for (; jokersPerDeck > 0; jokersPerDeck--)
+				Cards.Add(new(Card.Rank.Joker));
+		}
+	}
+}
+
+public static class CardExt
+{
+	public static List<Card> Shuffle(this List<Card> deckA)
+	{
+		List<Card> deckB = new();
+
+		while (deckA.Count > 0)
+		{
+			var card = deckA[UnityEngine.Random.Range(0, (int)deckA.Count - 1)];
+			deckB.Add(card); deckA.Remove(card);
+		}
+
+		return deckB;
 	}
 }
