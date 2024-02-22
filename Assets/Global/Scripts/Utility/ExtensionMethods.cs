@@ -82,4 +82,22 @@ public static class ExtensionMethods
 		return vec2;
 	}
 
+	public static Vector3 Clamp(this Vector3 vec3, Vector3 min, Vector3 max)
+	{
+		if (vec3.x > max.x)
+			vec3.x = max.x;
+		if (vec3.x < min.x)
+			vec3.x = min.x;
+		if (vec3.y > max.y)
+			vec3.y = max.y;
+		if (vec3.y < min.y)
+			vec3.y = min.y;
+		if (vec3.z > max.z)
+			vec3.z = max.z;
+		if (vec3.z < min.z)
+			vec3.z = min.z;
+
+		return vec3;
+	}
+
 }

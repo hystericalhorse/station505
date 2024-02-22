@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5b9264947cb0e48bc7dacb70b0ccc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPrefab: {fileID: 6410259346267209781, guid: ec884e55f244b054abc23d3018125bfc,
+  cursorPrefab: {fileID: 6410259346267209781, guid: ec884e55f244b054abc23d3018125bfc,
     type: 3}
