@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HoverCard : MonoBehaviour
@@ -15,19 +16,19 @@ public class HoverCard : MonoBehaviour
     {
         originalPosition = transform.position;
         hoverDistance = distance;
-    }
+	}
 
     void OnMouseEnter()
     {
-        isHovering = true;
+        //isHovering = true;
     }
-
+    
     void OnMouseExit()
     {
-        isHovering = false;
+        //isHovering = false;
     }
 
-    void Update()
+    public void Update()
     {
         // Move the card forward towards the camera over time when hovering
         if (isHovering)

@@ -39,7 +39,7 @@ public class BlackJackGameManager : MonoBehaviour
 
     private void BetClicked()
     {
-        throw new NotImplementedException();
+        
     }
 
     private void StandClicked()
@@ -107,10 +107,10 @@ public class BlackJackGameManager : MonoBehaviour
 
         foreach (Card card in hand) 
         { 
-            int cardValue = card.GetBlackJackValue();
+            int cardValue = card.GetValue();
             value += cardValue;
 
-            if (card.rank == Card.Rank.Ace)
+            if (card.rank == Rank.Ace)
             {
                 aces++;
             }

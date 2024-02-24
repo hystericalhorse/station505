@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class CardObject : MonoBehaviour
 {
+    public Card card;
     public TMP_Text cardText;
 
     // Start is called before the first frame update
     void Start()
     {
 		int cardNumber = Random.Range(1, 14);
-        Card.Suit randomCardType = (Card.Suit)Random.Range(0, 4);
+        Suit randomCardType = (Suit)Random.Range(0, 4);
 
         Debug.Log("Card Type: " + randomCardType);
         Debug.Log("Card Number: " + cardNumber);
@@ -37,7 +38,7 @@ public class CardObject : MonoBehaviour
         FaceCamera();
     }
 
-    public void SetText(int cardNumber, Card.Suit randomCardType)
+    public void SetText(int cardNumber, Suit randomCardType)
     {
 
         if (cardNumber == 11)
