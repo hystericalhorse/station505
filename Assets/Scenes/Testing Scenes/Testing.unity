@@ -423,13 +423,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e306d138b710a49a36b8755a60cd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 7828441637579285729, guid: 71bc8707d84a3234ea3d69e05ea0b54b,
+  cardPrefab: {fileID: 7770590795951856209, guid: 06feccc7cd7804e42add279a2cacc41d,
     type: 3}
   maxCards: 10
-  cardSpacing: 1
+  cardSpacing: 0.5
   cardSpawnHeight: 2
   cardSlantAngle: 30
   cardHoverDistance: 1
+  maxSpreadDistance: 15
 --- !u!4 &1825816337
 Transform:
   m_ObjectHideFlags: 0
