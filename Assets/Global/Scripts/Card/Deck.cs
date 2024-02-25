@@ -1,25 +1,10 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
+[System.Serializable]
 public class Card
 {
-	public enum Suit
-	{
-		Hearts,
-		Clubs,
-		Diamonds,
-		Spades
-	}
-	public enum Rank
-	{
-		Ace,
-		Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten,
-		Jack, Queen, King,
-		Joker
-	}
-
-	Suit suit;
+	public Suit suit;
 	public Rank rank;
 
 	public Card(Suit suit, Rank rank)
@@ -33,28 +18,21 @@ public class Card
 		this.rank = rank;
 	}
 
-	public int GetBlackJackValue()
+	public int GetValue(bool acesHigh = true)
 	{
 		switch (rank)
 		{
 			case Rank.Ace:
-				return 11;
+				return acesHigh ? 11 : 1;
 			case Rank.Two:
-				return 2;
 			case Rank.Three:
-				return 3;
 			case Rank.Four:
-				return 4;
 			case Rank.Five:
-				return 5;
 			case Rank.Six:
-				return 6;
 			case Rank.Seven:
-				return 7;
 			case Rank.Eight:
-				return 8;
 			case Rank.Nine:
-				return 9;
+				return (int)rank+1;
 			case Rank.Ten:
 			case Rank.Jack:
 			case Rank.Queen:
@@ -76,11 +54,34 @@ public class Deck
 		{
 			for (int suit = 0; suit < 4; suit++)
 				for (int rank = 0; rank < 13; rank++)
-					Cards.Add(new((Card.Suit)suit, (Card.Rank)rank));
+					Cards.Add(new((Suit)suit, (Rank)rank));
 
 			for (; jokersPerDeck > 0; jokersPerDeck--)
-				Cards.Add(new(Card.Rank.Joker));
+				Cards.Add(new(Rank.Joker));
 		}
+	}
+
+	public void Shuffle() => Cards.Shuffle();
+
+	public Card Peek()
+	{
+		return Cards[0];
+	}
+
+	public Card Draw()
+	{
+		Card card = Cards[0];
+		Cards.Remove(Cards[0]);
+		return card;
+	}
+
+	public Card[] Draw(uint count = 1)
+	{
+		Card[] cards = new Card[count];
+		for (var i = 0; i < count; i++)
+			cards[i] = Draw();
+
+		return cards;
 	}
 }
 

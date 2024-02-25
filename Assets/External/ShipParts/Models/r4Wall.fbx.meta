@@ -8,7 +8,8 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: GreyMetal.001
-    second: {fileID: 2100000, guid: 7c4b17b5a1c6c2c48832be46d1fd9f2e, type: 2}
+    second: {fileID: -876546973899608171, guid: fb6499f491a30a6469f9d40fe7c449ad,
+      type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

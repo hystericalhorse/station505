@@ -32,21 +32,19 @@ public class BlackJackGameManager : MonoBehaviour
         betBtn.onClick.AddListener(() => BetClicked());
     }
 
-    void Update()
+    // Place How Much You Wish To Bet
+    private void BetClicked()
     {
         
     }
 
-    private void BetClicked()
-    {
-        throw new NotImplementedException();
-    }
-
+    // The Player is Fine with Their Hand
     private void StandClicked()
     {
         DealerTurn();
     }
 
+    // The Player Draws a Card
     private void HitClicked()
     {
         if (deck == null || deck.Count == 0)
@@ -68,6 +66,7 @@ public class BlackJackGameManager : MonoBehaviour
         }
     }
 
+    // Deals Cards to Player and Dealer
     private void DealClicked()
     {
         if (deck == null || deck.Count == 0)
@@ -100,6 +99,7 @@ public class BlackJackGameManager : MonoBehaviour
         }
     }
 
+    // Grabs the Card Values of Respective Hand
     private int GetCardValues(Card[] hand)
     {
         int value = 0;
@@ -107,10 +107,10 @@ public class BlackJackGameManager : MonoBehaviour
 
         foreach (Card card in hand) 
         { 
-            int cardValue = card.GetBlackJackValue();
+            int cardValue = card.GetValue();
             value += cardValue;
 
-            if (card.rank == Card.Rank.Ace)
+            if (card.rank == Rank.Ace)
             {
                 aces++;
             }

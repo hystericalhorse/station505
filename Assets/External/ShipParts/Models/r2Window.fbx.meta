@@ -3,7 +3,18 @@ guid: b4a488d94af32234090452f5e03e2599
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass.001
+    second: {fileID: 2100000, guid: d613617d9ce939c4a8d2ab8b9506a20a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GreyMetal
+    second: {fileID: -876546973899608171, guid: fb6499f491a30a6469f9d40fe7c449ad,
+      type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +101,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.001
+    globalScale: 0.1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
