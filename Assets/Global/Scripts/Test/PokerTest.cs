@@ -7,7 +7,7 @@ public class PokerTest : MonoBehaviour, Interactable
 	[ContextMenu("EvaluateHand")]
 	public void EvaluateHand()
 	{
-		var evaluation = CardAlgorithms.EvaluateHand(cards);
+		var evaluation = CardAlgorithms.EvaluateHand(cards, out _);
 
 		Debug.Log(evaluation.ToString());
 	}

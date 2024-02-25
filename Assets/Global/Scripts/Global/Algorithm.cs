@@ -38,7 +38,6 @@ public static class CardAlgorithms
 
 		return sorted;
 	}
-
 	public static List<Card> SortSequentially(Card[] hand)
 	{
 		List<Card> sorted = new();
@@ -62,12 +61,16 @@ public static class CardAlgorithms
 	}
 
 
-	public static PokerHand EvaluateHand(Card[] hand)
+
+	public static PokerHand EvaluateHand(Card[] hand, out Card highCard)
 	{
 		if (hand.Length > 5 || hand.Length < 5)
 			throw new System.Exception("You aren't playing poker");
 
 		List<List<Card>> sorted = SortByRank(hand);
+		List<Card> sorted2 = SortSequentially(hand);
+
+		highCard = sorted2.Last();
 
 		// Log Sorted List
 		string debug = "";
@@ -81,7 +84,7 @@ public static class CardAlgorithms
 			default:
 				return PokerHand.Nothing;
 			case 5:
-				List<Card> sorted2 = SortSequentially(hand);
+				
 				debug = "";
 				foreach (var list in sorted2)
 					debug += list.rank.ToString() + " ";
@@ -118,20 +121,32 @@ public static class CardAlgorithms
 			case 2:
 				if (sorted[0].Count == 4 || sorted[1].Count == 4)
 				{
+					highCard = (sorted[0].Count == 4) ? sorted[0][0] : sorted[1][0];
 					if ((sorted[0].Count == 4 && sorted[1][0].rank == Rank.Joker) || (sorted[1].Count == 4 && sorted[0][0].rank == Rank.Joker))
 						return PokerHand.FiveOf;
 					else
 						return PokerHand.FourOf;
 				}
 
+				highCard = sorted[0][0].rank > sorted[1][0].rank ? sorted[0][0] : sorted[1][0];
 				return PokerHand.FullHouse;
 			case 3:
+				highCard = (sorted[0].Count != 2) ? (sorted[1].Count != 2 ? sorted[2][0] : sorted[1][0]) : sorted[0][0];
+
 				foreach (var list in sorted)
-					if (list.Count == 3)
-						return PokerHand.ThreeOf;
+				{
+					if (list.Count == 2 && highCard.rank < list[0].rank) highCard = list[0];
+					if (list.Count == 3) return PokerHand.ThreeOf;
+				}
 
 				return PokerHand.TwoPair;
 			case 4:
+				foreach (var list in sorted)
+				{
+					if (list.Count == 2) highCard = list[0];
+					break;
+				}
+
 				return PokerHand.Pair;
 		}
 	}

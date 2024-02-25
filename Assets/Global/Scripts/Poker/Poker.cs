@@ -101,8 +101,8 @@ public class Poker : MonoBehaviour
 
     private void DetermineWinner()
     {
-        PokerHand player = CardAlgorithms.EvaluateHand(playerHand);
-        PokerHand dealer = CardAlgorithms.EvaluateHand(dealerHand);
+        PokerHand player = CardAlgorithms.EvaluateHand(playerHand, out _);
+        PokerHand dealer = CardAlgorithms.EvaluateHand(dealerHand, out _);
 
         if (player > dealer)
         {

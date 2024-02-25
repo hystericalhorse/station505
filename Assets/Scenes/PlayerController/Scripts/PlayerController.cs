@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 	public void Start()
 	{
 		cursor = Instantiate(cursorPrefab.gameObject).GetComponent<PlayerCursor>() ?? GetComponentInChildren<PlayerCursor>();
-        cursor.triggerStay += TryGrab;
+        cursor.triggerStay += TryInteract;
 
 		playerMode = Mode.Locked_TopDown;
 		
@@ -54,6 +54,17 @@ public class PlayerController : MonoBehaviour
 				rb.transform.parent = null;
 			}
 
+		}
+	}
+	public void TryInteract(ref Collider col)
+	{
+		if (col.TryGetComponent<Interactable>(out var interactable))
+		{
+			if (Input.GetKeyDown(KeyCode.Mouse0))
+			{
+				interactable.OnInteract();
+				return;
+			}
 		}
 	}
 

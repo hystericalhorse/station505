@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(SphereCollider))]
 public class PlayerCursor : MonoBehaviour
