@@ -1,54 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIMenu : MonoBehaviour
 {
-    [SerializeField] Canvas Menu1;
-    [SerializeField] Canvas Menu2;
+    [SerializeField] Canvas mainMenu;
+    [SerializeField] Canvas settingsMenu;
+    [SerializeField] Canvas cardMenu;
+    [SerializeField] Canvas deckMenu;
+
+    [SerializeField] TextMeshPro currentDeck;
+    [SerializeField] TextMeshPro currentCardType;
+
+    private Canvas currentMenu;
 
     [SerializeField] ChairCamera chair;
 
 	public void Awake()
 	{
-
+        currentMenu = mainMenu;
+        settingsMenu.gameObject.SetActive(false);
+        cardMenu.gameObject.SetActive(false);
+        deckMenu.gameObject.SetActive(false);
 	}
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void BlackJack()
-    {
-        chair.anim.SetTrigger("TurnBack");
-    }
-
-    public void Poker()
-    {
-        chair.anim.SetTrigger("TurnBack");
-    }
-
-    public void GoFish()
-    {
-        chair.anim.SetTrigger("TurnBack");
-    }
 
     public void Settings()
     {
-        chair.anim.SetTrigger("TurnLeft");
-    }
+		currentMenu.gameObject.SetActive(false);
+		settingsMenu.gameObject.SetActive(true);
+		currentMenu = settingsMenu;
+	}
 
     public void Menu()
     {
-        chair.anim.SetTrigger("TurnRight");
+        currentMenu.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
+        currentMenu = mainMenu;
     }
+
+    public void CardSettings()
+    {
+		currentMenu.gameObject.SetActive(false);
+		cardMenu.gameObject.SetActive(true);
+		currentMenu = cardMenu;
+	}
+
+    public void DeckSettings()
+    {
+		currentMenu.gameObject.SetActive(false);
+		deckMenu.gameObject.SetActive(true);
+		currentMenu = deckMenu;
+	}
 
     public void Eject()
     { 
@@ -57,32 +60,36 @@ public class UIMenu : MonoBehaviour
 
     public void NormalCardSelect()
     {
-
+        currentCardType.text = "Normal";
     }
 
     public void HoloCardSelect()
     {
-
+        currentCardType.text = "Holographic";
     }
 
     public void DeckOneSelect()
     {
-
+        GameManager.instance.deckCount = 1;
+        currentDeck.text = "1";
     }
 
     public void DeckTwoSelect()
     {
-
+        GameManager.instance.deckCount = 2;
+        currentDeck.text = "2";
     }
 
     public void DeckThreeSelect()
     {
-
+        GameManager.instance.deckCount = 3;
+        currentDeck.text = "3";
     }
 
     public void DeckFourSelect()
     {
-
+        GameManager.instance.deckCount = 4;
+        currentDeck.text = "4";
     }
 
     public void EndGame()
