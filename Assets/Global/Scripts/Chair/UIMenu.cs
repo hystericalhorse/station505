@@ -10,8 +10,8 @@ public class UIMenu : MonoBehaviour
     [SerializeField] Canvas cardMenu;
     [SerializeField] Canvas deckMenu;
 
-    [SerializeField] TextMeshPro currentDeck;
-    [SerializeField] TextMeshPro currentCardType;
+    [SerializeField] TextMeshProUGUI currentDeck;
+    [SerializeField] TextMeshProUGUI currentCardType;
 
     private Canvas currentMenu;
 
@@ -24,6 +24,11 @@ public class UIMenu : MonoBehaviour
         cardMenu.gameObject.SetActive(false);
         deckMenu.gameObject.SetActive(false);
 	}
+
+    public void GameSelected()
+    {
+        chair.anim.SetTrigger("TurnBack");
+    }
 
     public void Settings()
     {

@@ -5269,8 +5269,8 @@ MonoBehaviour:
   settingsMenu: {fileID: 3589177267634110673}
   cardMenu: {fileID: 605899652}
   deckMenu: {fileID: 738386027}
-  currentDeck: {fileID: 0}
-  currentCardType: {fileID: 0}
+  currentDeck: {fileID: 1822573608}
+  currentCardType: {fileID: 1070980719}
   chair: {fileID: 541946503}
 --- !u!114 &3121120046864258316
 MonoBehaviour:
@@ -5823,6 +5823,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3032739382455512077}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: GameSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &4226742834832591692
 Transform:
   m_ObjectHideFlags: 0
@@ -6354,6 +6366,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3032739382455512077}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: GameSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &6700022660700529814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6771,6 +6795,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ManagerBridge, Assembly-CSharp
         m_MethodName: GM_NewGame
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3032739382455512077}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: GameSelected
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
