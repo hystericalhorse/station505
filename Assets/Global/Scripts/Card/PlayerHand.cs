@@ -42,14 +42,8 @@ public class PlayerHand : MonoBehaviour
             hoverCard.Initialize(cardHoverDistance);
 
             cards.Add(newCard);
-
-            // Set the sorting order based on the x-coordinate
-            Renderer cardRenderer = newCard.GetComponent<Renderer>();
-            cardRenderer.sortingOrder = Mathf.RoundToInt(newCard.transform.position.x * -100);
         }
     }
-
-
     void UpdateCardPositions()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -90,4 +84,6 @@ public class PlayerHand : MonoBehaviour
             }
         }
     }
+
+
 }
