@@ -50,6 +50,8 @@ public class Deck
 
 	public Deck(int decks = 1, int jokersPerDeck = 0)
     {
+		Cards = new List<Card>();
+
 		for (decks = Mathf.Abs(decks); decks > 0; decks--)
 		{
 			for (int suit = 0; suit < 4; suit++)

@@ -20,12 +20,12 @@ public class HoverCard : MonoBehaviour
 
     void OnMouseEnter()
     {
-        //isHovering = true;
+        isHovering = true;
     }
     
     void OnMouseExit()
     {
-        //isHovering = false;
+        isHovering = false;
     }
 
     public void Update()
