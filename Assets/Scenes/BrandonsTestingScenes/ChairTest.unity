@@ -5174,6 +5174,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 3340562618066077927, guid: 1f6fda7e579e45146b129a0701cc425c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5883,7 +5888,7 @@ GameObject:
   - component: {fileID: 4226742834832591692}
   - component: {fileID: 3032739382455512077}
   m_Layer: 0
-  m_Name: ChairMenu
+  m_Name: Menus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
