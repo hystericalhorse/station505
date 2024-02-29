@@ -8,11 +8,19 @@ public class Wheeler
 
     Hand myHand;
 
-    public void DealMe(Deck deck, uint count) => myHand.Draw(ref deck, count);
+    public void DrawCards(Deck deck, uint count) => myHand.Draw(ref deck, count);
 
 	public void PlayPoker()
     {
         // TODO
+
+        var checkHand = CardAlgorithms.EvaluateHand(myHand.hand.ToArray(), out var highCard);
+        if ((int) checkHand > 0)
+        {
+
+        }
+
+
     }
 
     public Blackjack.Move PlayBlackjack()
