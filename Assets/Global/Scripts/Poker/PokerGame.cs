@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class PokerGame : MonoBehaviour
 {
     // Game Buttons
-    private Button dealBtn;
-    private Button hitBtn;
-    private Button foldBtn;
-    private Button standBtn;
-    private Button betBtn;
+    [SerializeField] private Button dealBtn;
+    [SerializeField] private Button hitBtn;
+    [SerializeField] private Button foldBtn;
+    [SerializeField] private Button standBtn;
+    [SerializeField] private Button betBtn;
 
     // Player Hand
     private Card[] playerHand;
@@ -101,18 +101,36 @@ public class PokerGame : MonoBehaviour
 
     private void DetermineWinner()
     {
-        PokerHand player = CardAlgorithms.EvaluateHand(playerHand, out _);
-        PokerHand dealer = CardAlgorithms.EvaluateHand(dealerHand, out _);
+        PokerHand player = CardAlgorithms.EvaluateHand(playerHand, out var playerHighCard);
+        PokerHand dealer = CardAlgorithms.EvaluateHand(dealerHand, out var dealerHighCard);
 
         if (player > dealer)
         {
-            Debug.Log("Player Wins!");
-        } else if (player < dealer) 
+            // Player Wins
+            return;
+        }
+        if (player < dealer) 
         {
-            Debug.Log("Dealer Wins!");
-        } else if (player == dealer)
+			// Dealer Wins
+			return;
+		}
+
+        if (player == dealer)
         {
-            Debug.Log("It's a Draw.");
+            if (playerHighCard.rank > dealerHighCard.rank)
+            {
+                return;
+            }
+            else if (playerHighCard.rank < dealerHighCard.rank)
+            {
+				return;
+			}
+            else
+            {
+				// Split
+				return;
+			}
+            
         }
     }
 }

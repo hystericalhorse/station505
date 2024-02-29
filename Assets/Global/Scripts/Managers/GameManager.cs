@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
 		return _playerController;
 	}
-
 	public Wheeler GetWheeler()
 	{
 		_wheeler ??= new();

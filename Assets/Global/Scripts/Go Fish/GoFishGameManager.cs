@@ -42,6 +42,8 @@ public class GoFishGameManager : MonoBehaviour
                 deck.Add(new Card(s, r));
             }
         }
+
+        
     }
 
     // Deals Cards to Player and Opponent

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -47,7 +48,8 @@ public class Card
 
 public class Deck
 {
-    public List<Card> Cards { get; private set; }
+    List<Card> Cards { get; set; }
+	public List<Card> Get => Cards;
 
 	public Deck(int decks = 1, int jokersPerDeck = 0)
     {

@@ -41,7 +41,7 @@ public class Blackjack : CardGame
 				TryGetWin();
 				return;
 			case Move.Hit:
-				wheeler.DealMe(deck, 1);
+				wheeler.DrawCards(deck, 1);
 				break;
 		}
 	}
