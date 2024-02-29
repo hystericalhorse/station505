@@ -107,7 +107,7 @@ public class BlackJackGameManager : MonoBehaviour
 
         foreach (Card card in hand) 
         { 
-            int cardValue = card.GetValue();
+            int cardValue = card.GetBlackjackValue();
             value += cardValue;
 
             if (card.rank == Rank.Ace)

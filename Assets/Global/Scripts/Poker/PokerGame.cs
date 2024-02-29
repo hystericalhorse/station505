@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Poker : MonoBehaviour
+public class PokerGame : MonoBehaviour
 {
     // Game Buttons
     private Button dealBtn;

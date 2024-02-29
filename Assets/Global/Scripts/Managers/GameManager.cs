@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 	#region Properties
 	private CardGame _currentGame = null;
 	private PlayerController _playerController;
+	private Wheeler _wheeler;
 	private Camera _camera;
 
 	public int deckCount = 1;
@@ -32,6 +33,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
 		return _playerController;
 	}
+
+	public Wheeler GetWheeler()
+	{
+		_wheeler ??= new();
+
+		return _wheeler;
+	}
 	#endregion
 
 	#region Game Handling
@@ -44,14 +52,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 				_currentGame = new Blackjack(deckCount);
 				break;
 			case Game.Poker:
-				//_currentGame = new Poker();
+				_currentGame = new Poker(deckCount);
 				break;
 			case Game.GoFish:
-				//_currentGame = new GoFish();
+				_currentGame = new GoFish(deckCount);
 				break;
-			default:
 			case Game.Solitaire:
-				//_currentGame = new Solitaire();
+			//_currentGame = new Solitaire();
+			default:
 				break;
 		}
 	}

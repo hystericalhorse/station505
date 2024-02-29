@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 public class Card
@@ -18,7 +19,7 @@ public class Card
 		this.rank = rank;
 	}
 
-	public int GetValue(bool acesHigh = true)
+	public int GetBlackjackValue(bool acesHigh = true)
 	{
 		switch (rank)
 		{
@@ -85,6 +86,24 @@ public class Deck
 
 		return cards;
 	}
+
+	public void Discard(Card card) => Cards.Add(card);
+}
+
+public class Hand
+{
+	public List<Card> hand;
+
+	public void Draw(ref Deck deck) => hand.Add(deck.Draw());
+	public void Draw(ref Deck deck, uint count = 1) => hand.AddRange(deck.Draw(count));
+
+	public void Discard(Card card, ref Deck discard)
+	{
+		discard.Discard(card);
+		hand.Remove(card);
+	}
+
+	public int Count => hand.Count;
 }
 
 public static class CardExt
