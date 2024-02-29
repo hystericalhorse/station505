@@ -41,21 +41,28 @@ public class CardObject : MonoBehaviour
     public void SetText(int cardNumber, Suit randomCardType)
     {
 
-        if (cardNumber == 11)
+        if (cardText == null)
         {
-            cardText.text = "Jack" + " " + randomCardType;
-        }
-        else if (cardNumber == 12)
-        {
-            cardText.text = "Queen" + " " + randomCardType;
-        }
-        else if (cardNumber == 13)
-        {
-            cardText.text = "King" + " " + randomCardType;
+            Debug.Log("No Text Object Assigned.");
         }
         else
         {
-            cardText.text = cardNumber.ToString() + " " + randomCardType;
+            if (cardNumber == 11)
+            {
+                cardText.text = "Jack" + " " + randomCardType;
+            }
+            else if (cardNumber == 12)
+            {
+                cardText.text = "Queen" + " " + randomCardType;
+            }
+            else if (cardNumber == 13)
+            {
+                cardText.text = "King" + " " + randomCardType;
+            }
+            else
+            {
+                cardText.text = cardNumber.ToString() + " " + randomCardType;
+            }
         }
     }
 }

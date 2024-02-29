@@ -9,6 +9,7 @@ public class GoFishGameManager : MonoBehaviour
     // Game Buttons 
     public Button dealBtn;
     public Button askBtn;
+    public Button betBtn;
 
     // Player Hand
     private List<Card> playerHand;
@@ -24,6 +25,7 @@ public class GoFishGameManager : MonoBehaviour
         // Click Listeners 
         dealBtn.onClick.AddListener(() => DealClicked());
         askBtn.onClick.AddListener(() => AskClicked());
+        betBtn.onClick.AddListener(() => AskClicked());
 
         InitializeDeck();
     }
