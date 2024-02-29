@@ -9,15 +9,16 @@ using Random = System.Random;
 public class BlackJackGameManager : MonoBehaviour
 {
     //Game Buttons 
-    private Button dealBtn;
-    private Button hitBtn;
-    private Button standBtn;
-    private Button betBtn;
+    [SerializeField] private Button dealBtn;
+    [SerializeField] private Button hitBtn;
+    [SerializeField] private Button standBtn;
+    [SerializeField] private Button betBtn;
 
     //Player Hand
     private Card[] playerHand;
 
-    //Dealer Hand
+    //Dealer 
+    private Wheeler wheeler;
     private Card[] dealerHand;
 
     //Deck
@@ -127,13 +128,7 @@ public class BlackJackGameManager : MonoBehaviour
 
     private void DealerTurn()
     {
-        if (GetCardValues(dealerHand) < 17)
-        {
-            Card drawnCard = deck[0];
-            deck.RemoveAt(0);
-            Array.Resize(ref dealerHand, dealerHand.Length + 1);
-            dealerHand[dealerHand.Length - 1] = drawnCard;
-        }
+        wheeler.PlayBlackjack();
 
         DetermineWinner();
     }

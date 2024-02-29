@@ -48,7 +48,7 @@ public class Card
 
 public class Deck
 {
-    List<Card> Cards { get; set; }
+    public List<Card> Cards { get; set; }
 	public List<Card> Get => Cards;
 
 	public Deck(int decks = 1, int jokersPerDeck = 0)

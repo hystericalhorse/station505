@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class GoFishGameManager : MonoBehaviour
 {
     // Game Buttons 
-    public Button dealBtn;
-    public Button askBtn;
-    public Button betBtn;
+    [SerializeField] public Button dealBtn;
+    [SerializeField] public Button askBtn;
+    [SerializeField] public Button betBtn;
 
     // Player Hand
     private List<Card> playerHand;

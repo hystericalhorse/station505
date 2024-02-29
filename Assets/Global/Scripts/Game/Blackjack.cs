@@ -3,6 +3,12 @@ using UnityEngine.UI;
 
 public class Blackjack : CardGame
 {
+    //Player
+    private Card[] playerHand;
+
+	// Dealer
+	private Card[] dealerHand;
+
     public Blackjack(int decks) : base(decks) { }
 
 	#region CardGame
@@ -14,7 +20,31 @@ public class Blackjack : CardGame
 	public override void StartGame()
 	{
 		deck = new Deck(decks: decks);
-	}
+
+		deck.Shuffle();
+
+		if (playerHand == null) 
+		{
+			playerHand = new Card[2];
+		}
+
+		if (dealerHand == null)
+		{
+			dealerHand = new Card[2];
+		}
+
+        for (int i = 0; i < 2; i++)
+        {
+			playerHand[i] = deck.Cards[0];
+			deck.Cards.RemoveAt(i);
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            dealerHand[i] = deck.Cards[0];
+            deck.Cards.RemoveAt(i);
+        }
+    }
 
 	public override void PlaceBets()
 	{ 
@@ -30,6 +60,7 @@ public class Blackjack : CardGame
 	{
 		
 	}
+
 	public override void OnDealerTurn()
 	{
 		var wheeler = GameManager.instance.GetWheeler();
@@ -52,9 +83,10 @@ public class Blackjack : CardGame
 	}
 
 	public override void CleanTable()
-	{ 
+	{
 		
 	}
+
 	public override void EndGame()
 	{
 		
