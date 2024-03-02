@@ -11,6 +11,9 @@ public class GoFishGameManager : MonoBehaviour
     [SerializeField] public Button askBtn;
     [SerializeField] public Button betBtn;
 
+    // SFX
+    [SerializeField] private AudioSource placeCard;
+
     // Player Hand
     private List<Card> playerHand;
 
@@ -72,6 +75,7 @@ public class GoFishGameManager : MonoBehaviour
         {
             hand.Add(deck[0]);
             deck.RemoveAt(0);
+            placeCard.Play();
         }
     }
 
@@ -112,6 +116,7 @@ public class GoFishGameManager : MonoBehaviour
         {
             hand.Add(deck[0]);
             deck.RemoveAt(0);
+            placeCard.Play();
         }
         else
         {

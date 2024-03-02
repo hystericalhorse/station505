@@ -14,6 +14,9 @@ public class BlackJackGameManager : MonoBehaviour
     [SerializeField] private Button standBtn;
     [SerializeField] private Button betBtn;
 
+    // SFX
+    [SerializeField] private AudioSource placeCard;
+
     //Player Hand
     private Card[] playerHand;
 
@@ -59,6 +62,8 @@ public class BlackJackGameManager : MonoBehaviour
         Array.Resize(ref playerHand, playerHand.Length + 1);
         playerHand[playerHand.Length - 1] = drawnCard;
 
+        placeCard.Play();
+
         int handValue = GetCardValues(playerHand);
         if (handValue > 21) 
         {
@@ -91,13 +96,17 @@ public class BlackJackGameManager : MonoBehaviour
         {
             playerHand[i] = deck[0];
             deck.RemoveAt(i);
+            placeCard.Play();
         }
 
         for (int i = 0; i < 2; i++)
         {
             dealerHand[i] = deck[0];
             deck.RemoveAt(i);
+            placeCard.Play();
         }
+
+
     }
 
     // Grabs the Card Values of Respective Hand

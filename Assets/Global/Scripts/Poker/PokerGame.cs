@@ -13,6 +13,9 @@ public class PokerGame : MonoBehaviour
     [SerializeField] private Button standBtn;
     [SerializeField] private Button betBtn;
 
+    // SFX
+    [SerializeField] private AudioSource placeCard;
+
     // Player Hand
     private Card[] playerHand;
 
@@ -64,6 +67,8 @@ public class PokerGame : MonoBehaviour
 
         Array.Resize(ref playerHand, playerHand.Length + 1);
         playerHand[playerHand.Length - 1] = drawnCard;
+
+        placeCard.Play();
     }
 
     // Deals Hand to Player and Dealer
@@ -90,12 +95,14 @@ public class PokerGame : MonoBehaviour
         {
             playerHand[i] = deck[0];
             deck.RemoveAt(i);
+            placeCard.Play();
         }
 
         for (int i = 0; i < 5; i++)
         {
             dealerHand[i] = deck[0];
             deck.RemoveAt(i);
+            placeCard.Play();
         }
     }
 
