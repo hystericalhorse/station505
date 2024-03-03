@@ -77,8 +77,22 @@ public class Wheeler
             return Blackjack.Move.Hit;
     }
 
-    public void PlayGoFish()
+    public Rank PlayGoFish()
     {
         //TODO
+        var books = CardAlgorithms.SortByRank(myHand.hand.ToArray());
+
+        Rank whatToAskFor = Rank.Two;
+        int mostVal = 0;
+        foreach (var book in books)
+        {
+            if (book.Count > mostVal) // If I have more of these than those...
+            {
+                mostVal = book.Count;
+                whatToAskFor = book[0].rank;
+            }
+        }
+
+        return whatToAskFor;
     }
 }

@@ -60,8 +60,6 @@ public static class CardAlgorithms
 		return sorted;
 	}
 
-
-
 	public static PokerHand EvaluateHand(Card[] hand, out Card highCard)
 	{
 		if (hand.Length > 5 || hand.Length < 5)
@@ -264,6 +262,8 @@ public static class CardAlgorithms
 				return PokerHand.Pair;
 		}
 	}
+
+
 }
 
 public enum PokerHand
