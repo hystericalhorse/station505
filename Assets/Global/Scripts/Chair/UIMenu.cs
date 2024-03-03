@@ -10,6 +10,15 @@ public class UIMenu : MonoBehaviour
     [SerializeField] Canvas cardMenu;
     [SerializeField] Canvas deckMenu;
 
+    [SerializeField] GameObject blackJackUI;
+    [SerializeField] GameObject pokerUI;
+    [SerializeField] GameObject goFishUI;
+    [SerializeField] GameObject betUI;
+
+    private GameObject currentUI;
+
+    public Transform spawnPoint;
+
     [SerializeField] TextMeshProUGUI currentDeck;
     [SerializeField] TextMeshProUGUI currentCardType;
 
@@ -23,6 +32,10 @@ public class UIMenu : MonoBehaviour
         settingsMenu.gameObject.SetActive(false);
         cardMenu.gameObject.SetActive(false);
         deckMenu.gameObject.SetActive(false);
+
+        blackJackUI.gameObject.SetActive(false);
+        pokerUI.gameObject.SetActive(false);
+        goFishUI.gameObject.SetActive(false);
 	}
 
     public void GameSelected()
@@ -30,7 +43,33 @@ public class UIMenu : MonoBehaviour
         chair.anim.SetTrigger("TurnBack");
     }
 
-    public void Settings()
+    public void BlackJackSelected()
+    {
+        chair.anim.SetTrigger("TurnBack");
+        blackJackUI.gameObject.SetActive(true);
+        currentUI = blackJackUI;
+    }
+
+	public void GoFishSelected()
+	{
+		chair.anim.SetTrigger("TurnBack");
+        goFishUI.gameObject.SetActive(true);
+        currentUI = goFishUI;
+	}
+
+	public void PokerSelected()
+	{
+		chair.anim.SetTrigger("TurnBack");
+		pokerUI.gameObject.SetActive(true);
+        currentUI = pokerUI;
+	}
+
+    public void disableCurrentGame()
+    {
+        currentUI.gameObject.SetActive(false);
+    }
+
+	public void Settings()
     {
 		currentMenu.gameObject.SetActive(false);
 		settingsMenu.gameObject.SetActive(true);
