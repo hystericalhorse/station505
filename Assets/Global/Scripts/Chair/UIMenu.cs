@@ -15,9 +15,9 @@ public class UIMenu : MonoBehaviour
     [SerializeField] GameObject goFishUI;
     [SerializeField] GameObject betUI;
 
-    [SerializeField] AudioSource robotVoiceBlackJack;
-    [SerializeField] AudioSource robotVoicePoker;
-    [SerializeField] AudioSource robotVoiceGoFish;
+    [SerializeField] public AudioSource robotVoiceBlackJack;
+    [SerializeField] public AudioSource robotVoicePoker;
+    [SerializeField] public AudioSource robotVoiceGoFish;
 
     private GameObject currentUI;
 
@@ -29,6 +29,8 @@ public class UIMenu : MonoBehaviour
     private Canvas currentMenu;
 
     [SerializeField] ChairCamera chair;
+
+    [SerializeField] private BetUIMenu betMenu;
 
 	public void Awake()
 	{
@@ -50,25 +52,49 @@ public class UIMenu : MonoBehaviour
     public void BlackJackSelected()
     {
         chair.anim.SetTrigger("TurnBack");
-        blackJackUI.gameObject.SetActive(true);
+        //blackJackUI.gameObject.SetActive(true);
+        betMenu.SetGameMenu(blackJackUI);
+        betMenu.gameObject.SetActive(true);
         currentUI = blackJackUI;
+
+        if (betMenu.quitGame.isPlaying)
+        {
+            betMenu.quitGame.Stop();
+        }
+
         robotVoiceBlackJack.Play();
     }
 
 	public void GoFishSelected()
 	{
 		chair.anim.SetTrigger("TurnBack");
-        goFishUI.gameObject.SetActive(true);
+        //goFishUI.gameObject.SetActive(true);
+        betMenu.SetGameMenu(goFishUI);
+        betMenu.gameObject.SetActive(true);
         currentUI = goFishUI;
-        robotVoiceGoFish.Play();
+
+		if (betMenu.quitGame.isPlaying)
+		{
+			betMenu.quitGame.Stop();
+		}
+
+		robotVoiceGoFish.Play();
 	}
 
 	public void PokerSelected()
 	{
 		chair.anim.SetTrigger("TurnBack");
-		pokerUI.gameObject.SetActive(true);
+		//pokerUI.gameObject.SetActive(true);
+        betMenu.SetGameMenu(pokerUI);
+        betMenu.gameObject.SetActive(true);
         currentUI = pokerUI;
-        robotVoicePoker.Play();
+
+		if (betMenu.quitGame.isPlaying)
+		{
+			betMenu.quitGame.Stop();
+		}
+
+		robotVoicePoker.Play();
 	}
 
     public void disableCurrentGame()
