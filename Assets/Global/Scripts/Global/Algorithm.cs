@@ -150,6 +150,120 @@ public static class CardAlgorithms
 				return PokerHand.Pair;
 		}
 	}
+	public static PokerHand EvaluateHand(Card[] hand, out Card highCard, out List<Card> kickers)
+	{
+		if (hand.Length > 5 || hand.Length < 5)
+			throw new System.Exception("You aren't playing poker");
+
+		List<List<Card>> sorted = SortByRank(hand);
+		List<Card> sorted2 = SortSequentially(hand);
+		kickers = new();
+
+		highCard = sorted2.Last();
+
+		// Log Sorted List
+		string debug = "";
+		foreach (var list in sorted)
+			debug += list.First().rank.ToString() + ": " + list.Count().ToString() + "\n";
+
+		UnityEngine.Debug.Log(debug);
+
+		switch (sorted.Count)
+		{
+			default:
+				return PokerHand.Nothing;
+			case 5:
+				debug = "";
+				foreach (var list in sorted2)
+					debug += list.rank.ToString() + " ";
+
+				UnityEngine.Debug.Log(debug);
+
+				bool flush = true;
+				bool straight = true;
+				for (int i = 0; i < sorted2.Count - 1; i++)
+				{
+					if (((int)sorted2[i + 1].rank - (int)sorted2[i].rank) != 1)
+					{
+						straight = false;
+						break;
+					}
+				}
+
+				foreach (var card0 in sorted2)
+				{
+					if (!flush) break;
+					foreach (var card1 in sorted2)
+						if (card0.suit != card1.suit)
+						{
+							flush = false;
+							break;
+						}
+				}
+
+				if (straight && flush) return PokerHand.StraightFlush;
+				if (flush) return PokerHand.Flush;
+				if (straight) return PokerHand.Straight;
+
+				return PokerHand.Nothing;
+			case 2:
+				if (sorted[0].Count == 4 || sorted[1].Count == 4)
+				{
+					highCard = (sorted[0].Count == 4) ? sorted[0][0] : sorted[1][0];
+					if ((sorted[0].Count == 4 && sorted[1][0].rank == Rank.Joker) || (sorted[1].Count == 4 && sorted[0][0].rank == Rank.Joker))
+						return PokerHand.FiveOf;
+					else
+						return PokerHand.FourOf;
+				}
+
+				highCard = sorted[0][0].rank > sorted[1][0].rank ? sorted[0][0] : sorted[1][0];
+				return PokerHand.FullHouse;
+			case 3:
+
+				var returnVal = PokerHand.TwoPair;
+
+				highCard = (sorted[0].Count != 2) ? (sorted[1].Count != 2 ? sorted[2][0] : sorted[1][0]) : sorted[0][0];
+				
+				foreach (var list in sorted)
+				{
+					if (list.Count == 2 && highCard.rank < list[0].rank)
+						highCard = list[0];
+					if (list.Count == 3) returnVal = PokerHand.ThreeOf;
+				}
+
+				if (returnVal == PokerHand.ThreeOf)
+				{
+					foreach (var list in sorted)
+					{
+						if (list.Count != 3)
+							kickers.AddRange(list);
+					}
+
+					return returnVal;
+				}
+
+				foreach (var list in sorted)
+					if (list.Count != 2)
+						kickers.AddRange(list);
+
+				return returnVal;
+			case 4:
+				foreach (var list in sorted)
+				{
+					if (list.Count == 2)
+					{
+						highCard = list[0];
+						break;
+					}
+				}
+
+				foreach (var list in sorted)
+					if (list.Count != 2)
+						kickers.AddRange(list);
+
+				return PokerHand.Pair;
+		}
+	}
 }
 
 public enum PokerHand

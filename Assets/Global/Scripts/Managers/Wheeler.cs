@@ -8,20 +8,45 @@ public class Wheeler
 
     Hand myHand;
 
-    public void DrawCards(Deck deck, uint count) => myHand.Draw(ref deck, count);
+    public void DrawCards(ref Deck deck, uint count) => myHand.Draw(ref deck, count);
+    public void DiscardCard(ref Deck discards, Card card) => myHand.Discard(card, ref discards);
 
-	public void PlayPoker()
+	public void PlayPoker(ref Deck deck, ref Deck discards) // To be called after the player's turn in the first round.
     {
-        // TODO
+		// I never fold! Probably not the best strategy...
 
-        var checkHand = CardAlgorithms.EvaluateHand(myHand.hand.ToArray(), out var highCard);
+		var checkHand = CardAlgorithms.EvaluateHand(myHand.hand.ToArray(), out var highCard, out var kickers);
         if ((int) checkHand > 0)
         {
-
+		    switch (checkHand) // Only really need to discard if you have kickers.
+            {
+                default:
+                    break;
+                case PokerHand.Pair:// Two Cards of One Rank + Three Kickers
+				case PokerHand.TwoPair:  // Two Pairs + One Kicker
+                case PokerHand.ThreeOf: // Three Cards of One Rank + Two Kickers
+                    //TODO Discard the kickers.
+                    foreach (var card in kickers)
+                        DiscardCard(ref discards, card);
+					break;
+			}
         }
+        else
+        {            
+            // If I have nothing good, I will discard all but my highest card.
+			var i = myHand.hand.FindIndex(0, myHand.Count, x => (x == highCard));
+            for (int j = 0; j < myHand.Count; j++)
+            {
+                if (i == j || myHand.hand[j] == null)
+                    continue;
+                else
+                    DiscardCard(ref discards, myHand.hand[j]);
+            }
+		}
 
-
-    }
+		// Must draw.
+		DrawCards(ref deck, (uint)(5 - myHand.Count));
+	}
 
     public Blackjack.Move PlayBlackjack()
     {

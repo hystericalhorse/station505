@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 490415859}
   - component: {fileID: 490415858}
   - component: {fileID: 490415861}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -702,6 +702,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317534647836982739, guid: e7a7bb25adfbf5a40ac5513281fecb78,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739586018575892174, guid: e7a7bb25adfbf5a40ac5513281fecb78,
+        type: 3}
+      propertyPath: Distance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7163367165822674163, guid: e7a7bb25adfbf5a40ac5513281fecb78,
         type: 3}

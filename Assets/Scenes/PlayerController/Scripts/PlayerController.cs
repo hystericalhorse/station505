@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     [Header("Cursor")]
     [SerializeField] GameObject cursorPrefab;
 	PlayerCursor cursor;
+	[SerializeField, Range(1,100)] int Distance = 20;
 
 	public void Start()
 	{
 		cursor = Instantiate(cursorPrefab.gameObject).GetComponent<PlayerCursor>() ?? GetComponentInChildren<PlayerCursor>();
-        cursor.triggerStay += TryInteract;
+        cursor.triggerStay += TryGrab;
 
 		playerMode = Mode.Locked_TopDown;
 		
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
 			{
 				rb.transform.parent = cursor.transform;
+				rb.isKinematic = true;
 				return;
 			}
 
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetKeyUp(KeyCode.Mouse0))
 			{
+				rb.isKinematic = false;
 				rb.transform.parent = null;
 			}
 
@@ -71,9 +74,11 @@ public class PlayerController : MonoBehaviour
 	public void Cursor()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		var hits = Physics.RaycastAll(ray, Mathf.Infinity);
+		var hits = Physics.RaycastAll(ray, Distance);
 
 		if (hits.Length > 0)
-			cursor.transform.position = hits[0].point;
+			cursor.transform.position = hits[hits.Length - 1].point;
+		else
+			cursor.transform.position = ray.GetPoint(Distance);
 	}
 }
