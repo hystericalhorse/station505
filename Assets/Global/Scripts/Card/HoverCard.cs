@@ -10,6 +10,7 @@ public class HoverCard : MonoBehaviour
     public float hoverSpeed = 5f; // Speed of the card movement
 
     private bool isHovering = false;
+    private bool canHover = true;
 
     // Initialize the HoverCard script with the hover distance
     public void Initialize(float distance)
@@ -22,11 +23,12 @@ public class HoverCard : MonoBehaviour
     {
         isHovering = true;
     }
-    
+
     void OnMouseExit()
     {
         isHovering = false;
     }
+
 
     public void Update()
     {
@@ -42,5 +44,10 @@ public class HoverCard : MonoBehaviour
             float step = hoverSpeed * Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, originalPosition, step);
         }
+    }
+
+    public void StopHovering()
+    {
+       canHover = false;
     }
 }

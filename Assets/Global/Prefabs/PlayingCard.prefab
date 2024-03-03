@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6598938777619788592}
   - component: {fileID: 6121078951110197153}
   - component: {fileID: 8177217373672581260}
+  - component: {fileID: 2498645435109781419}
   m_Layer: 0
   m_Name: PlayingCard
   m_TagString: Untagged
@@ -184,3 +185,25 @@ MonoBehaviour:
     suit: 0
     rank: 0
   cardText: {fileID: 0}
+--- !u!64 &2498645435109781419
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542016511288688920}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 454365309670244297, guid: 9c9130047b454f441a87c05a66bd900c, type: 3}
