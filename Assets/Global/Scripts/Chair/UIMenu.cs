@@ -15,6 +15,10 @@ public class UIMenu : MonoBehaviour
     [SerializeField] GameObject goFishUI;
     [SerializeField] GameObject betUI;
 
+    [SerializeField] AudioSource robotVoiceBlackJack;
+    [SerializeField] AudioSource robotVoicePoker;
+    [SerializeField] AudioSource robotVoiceGoFish;
+
     private GameObject currentUI;
 
     public Transform spawnPoint;
@@ -48,6 +52,7 @@ public class UIMenu : MonoBehaviour
         chair.anim.SetTrigger("TurnBack");
         blackJackUI.gameObject.SetActive(true);
         currentUI = blackJackUI;
+        robotVoiceBlackJack.Play();
     }
 
 	public void GoFishSelected()
@@ -55,6 +60,7 @@ public class UIMenu : MonoBehaviour
 		chair.anim.SetTrigger("TurnBack");
         goFishUI.gameObject.SetActive(true);
         currentUI = goFishUI;
+        robotVoiceGoFish.Play();
 	}
 
 	public void PokerSelected()
@@ -62,6 +68,7 @@ public class UIMenu : MonoBehaviour
 		chair.anim.SetTrigger("TurnBack");
 		pokerUI.gameObject.SetActive(true);
         currentUI = pokerUI;
+        robotVoicePoker.Play();
 	}
 
     public void disableCurrentGame()
