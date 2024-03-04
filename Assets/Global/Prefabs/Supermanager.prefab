@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8703151643143423740}
   - component: {fileID: 3508437962166345409}
+  - component: {fileID: 9091503691441339998}
   m_Layer: 0
   m_Name: Supermanager
   m_TagString: GameController
@@ -44,3 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a67b36a7b6a9f48b05a5266484c16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckCount: 1
+--- !u!114 &9091503691441339998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916419615477066929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc50648cfe0eab42a8b4d4e610e2462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 24300002, guid: 72fb9c99a82d80743bdd7b31f003f602, type: 2}
+  sounds:
+  - name: PlaceCard
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 68fddd466d935c24cb24659145701f3e, type: 3}
+    volume: 0.5
+    pitch: 0.5
+    loop: 0
+  music: []
