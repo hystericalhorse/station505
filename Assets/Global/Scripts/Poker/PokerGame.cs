@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,9 @@ public class PokerGame : MonoBehaviour
     // SFX
     [SerializeField] private AudioSource placeCard;
 
+    // UI
+    [SerializeField] private TextMeshProUGUI winnerBox;
+
     // Player Hand
     private Card[] playerHand;
 
@@ -23,7 +28,10 @@ public class PokerGame : MonoBehaviour
     private Card[] dealerHand;
 
     // Deck 
-    private List<Card> deck;
+    private Deck deck;
+
+    // AI Instance
+    private Wheeler wheeler;
 
     // Funny AutoFill
     private List<Card> hitList;
@@ -31,6 +39,8 @@ public class PokerGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wheeler = new Wheeler();
+
         // Click Listeners 
         dealBtn.onClick.AddListener(() => DealClicked());
         hitBtn.onClick.AddListener(() => HitClicked());
@@ -46,24 +56,25 @@ public class PokerGame : MonoBehaviour
 
     private void FoldClicked()
     {
-        Debug.Log("Dealer Wins");
+        winnerBox.text = "Player Folded. Dealer Wins";
+        RestartGame();
     }
 
     private void StandClicked()
     {
-        DetermineWinner();
+        DealerTurn();
     }
 
     // Draws a Card Into the Player Hand
     private void HitClicked()
     {
-        if (deck == null || deck.Count == 0)
+        if (deck == null || deck.Get.Count == 0)
         {
             Debug.Log("Deck is Empty/Null");
         }
 
-        Card drawnCard = deck[0];
-        deck.RemoveAt(0);
+        Card drawnCard = deck.Get[0];
+        deck.Get.RemoveAt(0);
 
         Array.Resize(ref playerHand, playerHand.Length + 1);
         playerHand[playerHand.Length - 1] = drawnCard;
@@ -74,12 +85,12 @@ public class PokerGame : MonoBehaviour
     // Deals Hand to Player and Dealer
     private void DealClicked()
     {
-        if (deck == null || deck.Count == 0)
+        if (deck == null || deck.Get.Count == 0)
         {
             Debug.Log("Deck is Empty/Null");
         }
 
-        deck = deck.Shuffle();
+        deck.Shuffle();
 
         if (playerHand == null)
         {
@@ -93,15 +104,15 @@ public class PokerGame : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            playerHand[i] = deck[0];
-            deck.RemoveAt(i);
+            playerHand[i] = deck.Get[0];
+            deck.Get.RemoveAt(i);
             placeCard.Play();
         }
 
         for (int i = 0; i < 5; i++)
         {
-            dealerHand[i] = deck[0];
-            deck.RemoveAt(i);
+            dealerHand[i] = deck.Get[0];
+            deck.Get.RemoveAt(i);
             placeCard.Play();
         }
     }
@@ -113,31 +124,64 @@ public class PokerGame : MonoBehaviour
 
         if (player > dealer)
         {
-            // Player Wins
+            winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand, out playerHighCard).ToString();
+            StartCoroutine(WaitFiveSeconds());
+            RestartGame();
             return;
         }
         if (player < dealer) 
         {
-			// Dealer Wins
-			return;
+            winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand, out dealerHighCard).ToString();
+            StartCoroutine(WaitFiveSeconds());
+            RestartGame();
+            return;
 		}
 
         if (player == dealer)
         {
             if (playerHighCard.rank > dealerHighCard.rank)
             {
+                winnerBox.text = "Player Wins with " + playerHighCard.ToString();
+                StartCoroutine(WaitFiveSeconds());
+                RestartGame();
                 return;
             }
             else if (playerHighCard.rank < dealerHighCard.rank)
             {
+                winnerBox.text = "Dealer Wins with " + dealerHighCard.ToString();
+                StartCoroutine(WaitFiveSeconds());
+                RestartGame();
 				return;
 			}
             else
             {
-				// Split
+                // Split
+                winnerBox.text = "Dealer Wins Tie";
+                StartCoroutine(WaitFiveSeconds());
+                RestartGame();
 				return;
 			}
             
         }
+    }
+
+    private void DealerTurn()
+    {
+        wheeler.PlayPoker(ref deck, ref deck);
+
+        DetermineWinner();
+    }
+
+    private void RestartGame()
+    {
+        deck = null;
+        playerHand = null;
+        dealerHand = null;
+        winnerBox = null;
+    }
+
+    private IEnumerator WaitFiveSeconds()
+    {
+        yield return new WaitForSeconds(5f);
     }
 }
