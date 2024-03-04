@@ -162,14 +162,14 @@ public class BlackJackGameManager : MonoBehaviour
         } else if (playerValue < 21 && dealerValue > 21) 
         {
             winnerBox.text = "Dealer Busts. Player Wins";
-            GameManager.instance.SetMoney(GameManager.instance.currentBet * 2);
+            GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
             RestartGame();
         } else if (playerValue > dealerValue)
         {
             winnerBox.text = "Player Wins with " + playerValue.ToString();
-            GameManager.instance.SetMoney(GameManager.instance.currentBet * 2);
+            GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
             RestartGame();

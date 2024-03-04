@@ -125,7 +125,7 @@ public class PokerGame : MonoBehaviour
         if (player > dealer)
         {
             winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand, out playerHighCard).ToString();
-            GameManager.instance.SetMoney(GameManager.instance.currentBet * 2);
+            GameManager.instance.SetMoney( GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
             RestartGame();
@@ -145,7 +145,7 @@ public class PokerGame : MonoBehaviour
             if (playerHighCard.rank > dealerHighCard.rank)
             {
                 winnerBox.text = "Player Wins with " + playerHighCard.ToString();
-				GameManager.instance.SetMoney(GameManager.instance.currentBet * 2);
+				GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
 				GameManager.instance.currentBet = 0;
 				StartCoroutine(WaitThreeSeconds());
                 RestartGame();
@@ -162,7 +162,7 @@ public class PokerGame : MonoBehaviour
             else
             {
                 // Split
-                GameManager.instance.SetMoney(GameManager.instance.currentBet * 2 / 2);
+                GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet);
                 winnerBox.text = "Dealer Wins Tie";
                 StartCoroutine(WaitThreeSeconds());
                 RestartGame();
