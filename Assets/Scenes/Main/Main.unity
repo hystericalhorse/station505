@@ -1530,6 +1530,12 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 1132115880995179901, guid: fdb24b8591344954ea8e02df025e0cf9,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 72fb9c99a82d80743bdd7b31f003f602,
+        type: 2}
     - target: {fileID: 1134170688992478002, guid: fdb24b8591344954ea8e02df025e0cf9,
         type: 3}
       propertyPath: m_StaticEditorFlags
