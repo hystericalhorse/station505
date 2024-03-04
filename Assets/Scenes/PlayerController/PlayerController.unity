@@ -251,8 +251,8 @@ GameObject:
   m_Component:
   - component: {fileID: 490415860}
   - component: {fileID: 490415859}
-  - component: {fileID: 490415858}
   - component: {fileID: 490415861}
+  - component: {fileID: 490415862}
   m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -260,14 +260,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &490415858
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490415857}
-  m_Enabled: 1
 --- !u!20 &490415859
 Camera:
   m_ObjectHideFlags: 0
@@ -378,6 +370,87 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!81 &490415862
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490415857}
+  m_Enabled: 1
+--- !u!1001 &1084538302
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4916419615477066929, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_Name
+      value: Supermanager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703151643143423740, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091503691441339998, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f26606262c81d564ebe4f90f8ed5f0df, type: 3}
 --- !u!1 &1182313284
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,20 +643,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1257767594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8131e7cf83e9b5a46aabe4fbbac7b278, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f456b89567a48541822451075910894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - suit: 2
-    rank: 2
-  - suit: 2
-    rank: 4
-  - suit: 2
-    rank: 6
-  - suit: 2
-    rank: 5
-  - suit: 2
-    rank: 3
+  sound: PlaceCard
 --- !u!1 &1979887525
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,3 +841,4 @@ SceneRoots:
   - {fileID: 1979887529}
   - {fileID: 7260375495133643359}
   - {fileID: 1257767598}
+  - {fileID: 1084538302}
