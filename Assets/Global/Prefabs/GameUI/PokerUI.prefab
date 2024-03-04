@@ -1168,7 +1168,7 @@ MonoBehaviour:
   standBtn: {fileID: 7609926868603573275}
   betBtn: {fileID: 3647493186736280592}
   placeCard: {fileID: 0}
-  winnerBox: {fileID: 0}
+  winnerBox: {fileID: 7117419035100876264}
 --- !u!1 &3995462720314895984
 GameObject:
   m_ObjectHideFlags: 0

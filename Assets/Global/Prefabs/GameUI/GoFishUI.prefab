@@ -1702,7 +1702,7 @@ MonoBehaviour:
   askBtn: {fileID: 1109903048996812750}
   betBtn: {fileID: 2005007703253902943}
   placeCard: {fileID: 0}
-  winnerBox: {fileID: 0}
+  winnerBox: {fileID: 5376827247101016520}
 --- !u!1001 &1901252820216602881
 PrefabInstance:
   m_ObjectHideFlags: 0
