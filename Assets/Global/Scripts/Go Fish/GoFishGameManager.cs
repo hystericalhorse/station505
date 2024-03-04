@@ -24,6 +24,9 @@ public class GoFishGameManager : MonoBehaviour
     // Opponent Hand (Dealer in this case)
     private List<Card> opponentHand;
 
+    private int playerScore;
+    private int opponentScore;
+
     // Deck
     private Deck deck;
 
@@ -112,7 +115,9 @@ public class GoFishGameManager : MonoBehaviour
 
             isPlayerturn = true;
             winnerBox.text = "Player can Go Again";
-            // TODO: Check for books in the player's hand and handle scoring
+
+            // Check for books in the player's hand and handle scoring
+            CheckForBooks(playerHand);
         }
         else
         {
@@ -167,7 +172,7 @@ public class GoFishGameManager : MonoBehaviour
 
             isPlayerturn = false;
             winnerBox.text = "Dealer can Go Again";
-            // TODO: Check for books in the player's hand and handle scoring
+            CheckForBooks(opponentHand);
         }
         else
         {
@@ -187,8 +192,65 @@ public class GoFishGameManager : MonoBehaviour
         InitializeDeck();
     }
 
+    private void CheckForBooks(List<Card> hand)
+    {
+        Dictionary<Rank, int> rankCount = new Dictionary<Rank, int>();
+
+        // Count the occurrences of each rank in the hand
+        foreach (Card card in hand)
+        {
+            if (rankCount.ContainsKey(card.rank))
+            {
+                rankCount[card.rank]++;
+            }
+            else
+            {
+                rankCount.Add(card.rank, 1);
+            }
+        }
+
+        // Check for books (sets of four cards with the same rank)
+        foreach (var kvp in rankCount)
+        {
+            if (kvp.Value == 4)
+            {
+                // Remove the four cards from the hand
+                hand.RemoveAll(card => card.rank == kvp.Key);
+
+
+                if (isPlayerturn == true)
+                {
+                    playerScore += 1;
+                }
+                else
+                {
+                    opponentScore += 1;
+                }
+
+                if (opponentScore + playerScore == 13)
+                {
+                    if (playerScore > opponentScore)
+                    {
+                        winnerBox.text = "Player Wins";
+                    }
+                    else if (playerScore < opponentScore)
+                    {
+                        winnerBox.text = "Dealer Wins";
+                    }
+                    else
+                    {
+                        winnerBox.text = "Its A Tie";
+                    }
+                    WaitThreeSeconds();
+                    RestartGame();
+                }
+            }
+        }
+    }
+
     private IEnumerator WaitThreeSeconds()
     {
         yield return new WaitForSeconds(3f);
     }
+
 }
