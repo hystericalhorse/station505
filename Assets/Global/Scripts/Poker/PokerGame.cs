@@ -125,14 +125,14 @@ public class PokerGame : MonoBehaviour
         if (player > dealer)
         {
             winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand, out playerHighCard).ToString();
-            StartCoroutine(WaitFiveSeconds());
+            StartCoroutine(WaitThreeSeconds());
             RestartGame();
             return;
         }
         if (player < dealer) 
         {
             winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand, out dealerHighCard).ToString();
-            StartCoroutine(WaitFiveSeconds());
+            StartCoroutine(WaitThreeSeconds());
             RestartGame();
             return;
 		}
@@ -142,14 +142,14 @@ public class PokerGame : MonoBehaviour
             if (playerHighCard.rank > dealerHighCard.rank)
             {
                 winnerBox.text = "Player Wins with " + playerHighCard.ToString();
-                StartCoroutine(WaitFiveSeconds());
+                StartCoroutine(WaitThreeSeconds());
                 RestartGame();
                 return;
             }
             else if (playerHighCard.rank < dealerHighCard.rank)
             {
                 winnerBox.text = "Dealer Wins with " + dealerHighCard.ToString();
-                StartCoroutine(WaitFiveSeconds());
+                StartCoroutine(WaitThreeSeconds());
                 RestartGame();
 				return;
 			}
@@ -157,7 +157,7 @@ public class PokerGame : MonoBehaviour
             {
                 // Split
                 winnerBox.text = "Dealer Wins Tie";
-                StartCoroutine(WaitFiveSeconds());
+                StartCoroutine(WaitThreeSeconds());
                 RestartGame();
 				return;
 			}
@@ -174,14 +174,14 @@ public class PokerGame : MonoBehaviour
 
     private void RestartGame()
     {
-        deck = null;
+        deck = new Deck();
         playerHand = null;
         dealerHand = null;
-        winnerBox = null;
+        winnerBox.text = string.Empty;
     }
 
-    private IEnumerator WaitFiveSeconds()
+    private IEnumerator WaitThreeSeconds()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
     }
 }
