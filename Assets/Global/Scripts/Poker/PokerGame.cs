@@ -28,7 +28,7 @@ public class PokerGame : MonoBehaviour
     private Card[] dealerHand;
 
     // Deck 
-    private Deck deck;
+    private Deck deck = new();
 
     // AI Instance
     private Wheeler wheeler;

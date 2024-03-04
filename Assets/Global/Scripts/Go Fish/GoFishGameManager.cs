@@ -28,7 +28,7 @@ public class GoFishGameManager : MonoBehaviour
     private int opponentScore;
 
     // Deck
-    private Deck deck;
+    private Deck deck = new();
 
     // AI Instance
     private Wheeler wheeler;
