@@ -43,7 +43,7 @@ public class GoFishGameManager : MonoBehaviour
         // Click Listeners 
         dealBtn.onClick.AddListener(() => DealClicked());
         askBtn.onClick.AddListener(() => AskClicked());
-        betBtn.onClick.AddListener(() => AskClicked());
+        betBtn.onClick.AddListener(() => BetClicked());
 
         InitializeDeck();
     }
@@ -192,6 +192,7 @@ public class GoFishGameManager : MonoBehaviour
         InitializeDeck();
     }
 
+
     private void CheckForBooks(List<Card> hand)
     {
         Dictionary<Rank, int> rankCount = new Dictionary<Rank, int>();
@@ -246,6 +247,11 @@ public class GoFishGameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void BetClicked()
+    {
+
     }
 
     private IEnumerator WaitThreeSeconds()
