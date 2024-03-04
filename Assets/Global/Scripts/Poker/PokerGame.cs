@@ -125,6 +125,8 @@ public class PokerGame : MonoBehaviour
         if (player > dealer)
         {
             winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand, out playerHighCard).ToString();
+            GameManager.instance.SetMoney( GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
+            GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
             RestartGame();
             return;
@@ -132,6 +134,7 @@ public class PokerGame : MonoBehaviour
         if (player < dealer) 
         {
             winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand, out dealerHighCard).ToString();
+            GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
             RestartGame();
             return;
@@ -142,13 +145,16 @@ public class PokerGame : MonoBehaviour
             if (playerHighCard.rank > dealerHighCard.rank)
             {
                 winnerBox.text = "Player Wins with " + playerHighCard.ToString();
-                StartCoroutine(WaitThreeSeconds());
+				GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
+				GameManager.instance.currentBet = 0;
+				StartCoroutine(WaitThreeSeconds());
                 RestartGame();
                 return;
             }
             else if (playerHighCard.rank < dealerHighCard.rank)
             {
                 winnerBox.text = "Dealer Wins with " + dealerHighCard.ToString();
+                GameManager.instance.currentBet = 0;
                 StartCoroutine(WaitThreeSeconds());
                 RestartGame();
 				return;
@@ -156,6 +162,7 @@ public class PokerGame : MonoBehaviour
             else
             {
                 // Split
+                GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet);
                 winnerBox.text = "Dealer Wins Tie";
                 StartCoroutine(WaitThreeSeconds());
                 RestartGame();

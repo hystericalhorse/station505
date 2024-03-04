@@ -16,6 +16,10 @@ public class Blackjack : CardGame
 	public override void SetupTable()
 	{
 		
+		if (playerHand == null) 
+		{
+			playerHand = new Card[2];
+		}
 	}
 	public override void StartGame()
 	{
@@ -23,10 +27,6 @@ public class Blackjack : CardGame
 
 		deck.Shuffle();
 
-		if (playerHand == null) 
-		{
-			playerHand = new Card[2];
-		}
 
 		if (dealerHand == null)
 		{
