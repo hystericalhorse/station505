@@ -88,7 +88,7 @@ public class GoFishGameManager : MonoBehaviour
         {
             hand.Add(deck.Get[0]);
             deck.Get.RemoveAt(0);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
     }
 
@@ -135,7 +135,7 @@ public class GoFishGameManager : MonoBehaviour
         {
             hand.Add(deck.Get[0]);
             deck.Get.RemoveAt(0);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
         else
         {
@@ -233,11 +233,14 @@ public class GoFishGameManager : MonoBehaviour
                     if (playerScore > opponentScore)
                     {
                         winnerBox.text = "Player Wins";
-                    }
+						GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
+						GameManager.instance.currentBet = 0;
+					}
                     else if (playerScore < opponentScore)
                     {
                         winnerBox.text = "Dealer Wins";
-                    }
+						GameManager.instance.currentBet = 0;
+					}
                     else
                     {
                         winnerBox.text = "Its A Tie";

@@ -102,14 +102,14 @@ public class BlackJackGameManager : MonoBehaviour
         {
             playerHand[i] = deck.Get[0];
             deck.Get.RemoveAt(i);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
 
         for (int i = 0; i < 2; i++)
         {
             dealerHand[i] = deck.Get[0];
             deck.Get.RemoveAt(i);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
 
 
