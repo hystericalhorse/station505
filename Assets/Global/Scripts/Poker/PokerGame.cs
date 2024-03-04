@@ -79,7 +79,7 @@ public class PokerGame : MonoBehaviour
         Array.Resize(ref playerHand, playerHand.Length + 1);
         playerHand[playerHand.Length - 1] = drawnCard;
 
-        placeCard.Play();
+        AudioManager.instance.PlaySound("PlayCard");
     }
 
     // Deals Hand to Player and Dealer
@@ -106,14 +106,14 @@ public class PokerGame : MonoBehaviour
         {
             playerHand[i] = deck.Get[0];
             deck.Get.RemoveAt(i);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
 
         for (int i = 0; i < 5; i++)
         {
             dealerHand[i] = deck.Get[0];
             deck.Get.RemoveAt(i);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
     }
 

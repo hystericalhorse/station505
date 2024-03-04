@@ -88,7 +88,7 @@ public class GoFishGameManager : MonoBehaviour
         {
             hand.Add(deck.Get[0]);
             deck.Get.RemoveAt(0);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
     }
 
@@ -135,7 +135,7 @@ public class GoFishGameManager : MonoBehaviour
         {
             hand.Add(deck.Get[0]);
             deck.Get.RemoveAt(0);
-            placeCard.Play();
+            AudioManager.instance.PlaySound("PlayCard");
         }
         else
         {
