@@ -232,11 +232,14 @@ public class GoFishGameManager : MonoBehaviour
                     if (playerScore > opponentScore)
                     {
                         winnerBox.text = "Player Wins";
-                    }
+						GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
+						GameManager.instance.currentBet = 0;
+					}
                     else if (playerScore < opponentScore)
                     {
                         winnerBox.text = "Dealer Wins";
-                    }
+						GameManager.instance.currentBet = 0;
+					}
                     else
                     {
                         winnerBox.text = "Its A Tie";
