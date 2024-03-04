@@ -120,6 +120,8 @@ public static class CardExt
 			deckB.Add(card); deckA.Remove(card);
 		}
 
-		return deckB;
+		deckA = deckB;
+
+		return deckA;
 	}
 }
