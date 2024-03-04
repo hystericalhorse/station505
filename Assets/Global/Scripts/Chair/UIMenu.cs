@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class UIMenu : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class UIMenu : MonoBehaviour
 
     [SerializeField] private BetUIMenu betMenu;
 
+    public AudioMixer audioMixer;
 	public void Awake()
 	{
         currentMenu = mainMenu;
@@ -173,6 +175,12 @@ public class UIMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+
 
 
 }
