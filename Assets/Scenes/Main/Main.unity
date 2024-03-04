@@ -3439,6 +3439,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3508437962166345409, guid: f26606262c81d564ebe4f90f8ed5f0df,
+        type: 3}
+      propertyPath: BetUI
+      value: 
+      objectReference: {fileID: 1482191805}
     - target: {fileID: 4916419615477066929, guid: f26606262c81d564ebe4f90f8ed5f0df,
         type: 3}
       propertyPath: m_Name
