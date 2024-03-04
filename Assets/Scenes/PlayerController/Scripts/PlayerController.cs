@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 	public void Start()
 	{
 		cursor = Instantiate(cursorPrefab.gameObject).GetComponent<PlayerCursor>() ?? GetComponentInChildren<PlayerCursor>();
-        cursor.triggerStay += TryGrab;
+        cursor.triggerStay += TryInteract;
 
 		playerMode = Mode.Locked_TopDown;
 		

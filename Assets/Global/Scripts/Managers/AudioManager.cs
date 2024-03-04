@@ -105,6 +105,20 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 		return false;
 	}
 
+	public bool PlayOverlappingSound(string name)
+	{
+		foreach (var sound in sounds)
+		{
+			if (sound.name.ToLower() == name.ToLower())
+			{
+				sound.source.PlayOneShot(sound.clip);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public IEnumerator ResetSound(string name, float inSeconds)
 	{
 		yield return new WaitForSeconds(inSeconds);

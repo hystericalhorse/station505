@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckCount: 1
+  money: 5000
+  currentBet: 0
 --- !u!114 &9091503691441339998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +64,8 @@ MonoBehaviour:
   sounds:
   - name: PlaceCard
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 68fddd466d935c24cb24659145701f3e, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 18e9f11dd009e1f4496f1e1b66f7b068, type: 3}
+    volume: 1
     pitch: 0.5
     loop: 0
   music: []
