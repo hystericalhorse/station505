@@ -66,7 +66,19 @@ public class Deck
 		}
 	}
 
-	public void Shuffle() => Cards.Shuffle();
+	public void Shuffle()
+	{
+		List<Card> deckA = Cards;
+		List<Card> deckB = new();
+
+		while (deckA.Count > 0)
+		{
+			var card = deckA[UnityEngine.Random.Range(0, (int)deckA.Count - 1)];
+			deckB.Add(card); deckA.Remove(card);
+		}
+
+		Cards = deckB;
+	}
 
 	public Card Peek()
 	{
