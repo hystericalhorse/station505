@@ -33,6 +33,8 @@ public class BlackJackGameManager : MonoBehaviour
 
     void Start()
     {
+        wheeler = new Wheeler();
+
         // Click Listeners 
         dealBtn.onClick.AddListener(() => DealClicked());
         hitBtn.onClick.AddListener(() => HitClicked());
