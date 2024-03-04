@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 	public int deckCount = 1;
 	public int money = 5000;
 	public int currentBet = 0;
+
+	[SerializeField] public GameObject BetUI;
 	#endregion
 
 	#region MonoBehaviour

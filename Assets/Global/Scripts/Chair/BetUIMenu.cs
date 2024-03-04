@@ -79,8 +79,15 @@ public class BetUIMenu : MonoBehaviour
         }
 	}
 
-    // Update is called once per frame
-    void Update()
+	public void BetReset()
+	{
+		currentMenu.SetActive(false);
+        gameObject.SetActive(true);
+        betText.text = GameManager.instance.currentBet.ToString();
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         
     }

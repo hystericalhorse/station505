@@ -158,33 +158,38 @@ public class BlackJackGameManager : MonoBehaviour
             winnerBox.text = "Player Busts. Dealer Wins";
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
         } else if (playerValue < 21 && dealerValue > 21) 
         {
             winnerBox.text = "Dealer Busts. Player Wins";
             GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
         } else if (playerValue > dealerValue)
         {
             winnerBox.text = "Player Wins with " + playerValue.ToString();
             GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
         } else if (dealerValue > playerValue)
         {
             winnerBox.text = "Dealer Wins with " + dealerValue.ToString();
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
         }
         else
         {
             winnerBox.text = "It's a Draw";
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
         }
     }
 

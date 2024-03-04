@@ -234,15 +234,18 @@ public class GoFishGameManager : MonoBehaviour
                         winnerBox.text = "Player Wins";
 						GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
 						GameManager.instance.currentBet = 0;
+                        GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 					}
                     else if (playerScore < opponentScore)
                     {
                         winnerBox.text = "Dealer Wins";
 						GameManager.instance.currentBet = 0;
+                        GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 					}
                     else
                     {
                         winnerBox.text = "Its A Tie";
+                        GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
                     }
                     WaitThreeSeconds();
                     RestartGame();

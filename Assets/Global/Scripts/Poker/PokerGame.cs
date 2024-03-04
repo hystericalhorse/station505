@@ -128,7 +128,8 @@ public class PokerGame : MonoBehaviour
             GameManager.instance.SetMoney( GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
             return;
         }
         if (player < dealer) 
@@ -136,7 +137,8 @@ public class PokerGame : MonoBehaviour
             winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand, out dealerHighCard).ToString();
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
-            RestartGame();
+			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+			RestartGame();
             return;
 		}
 
@@ -148,7 +150,8 @@ public class PokerGame : MonoBehaviour
 				GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
 				GameManager.instance.currentBet = 0;
 				StartCoroutine(WaitThreeSeconds());
-                RestartGame();
+				GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+				RestartGame();
                 return;
             }
             else if (playerHighCard.rank < dealerHighCard.rank)
@@ -165,7 +168,8 @@ public class PokerGame : MonoBehaviour
                 GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet);
                 winnerBox.text = "Dealer Wins Tie";
                 StartCoroutine(WaitThreeSeconds());
-                RestartGame();
+				GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+				RestartGame();
 				return;
 			}
             
