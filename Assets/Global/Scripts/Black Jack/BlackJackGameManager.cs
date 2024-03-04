@@ -29,7 +29,7 @@ public class BlackJackGameManager : MonoBehaviour
     private Card[] dealerHand;
 
     //Deck
-    private Deck deck;
+    private Deck deck = new();
 
     void Start()
     {
