@@ -687,6 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorPrefab: {fileID: 6410259346267209781, guid: ec884e55f244b054abc23d3018125bfc,
     type: 3}
+  Distance: 20
 --- !u!114 &368748432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3951,6 +3952,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4623362190063888010, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623362190063888010, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
         type: 3}
       propertyPath: betUI
@@ -3990,6 +4001,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Menus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309387284418093127, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309387284418093127, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309387284418093127, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8351597594704448568, guid: a8bd2bd49dabb8140889b1c1fc209387,
         type: 3}
