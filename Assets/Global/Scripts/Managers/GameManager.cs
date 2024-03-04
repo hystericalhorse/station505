@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 	private Camera _camera;
 
 	public int deckCount = 1;
+	public int money = 5000;
+	public int currentBet = 0;
 	#endregion
 
 	#region MonoBehaviour
@@ -61,6 +63,16 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 			default:
 				break;
 		}
+	}
+
+	public void SetMoney(int newMoney)
+	{
+		money = newMoney;
+	}
+
+	public int GetMoney()
+	{
+		return money;
 	}
 	#endregion
 	#region Player Handling

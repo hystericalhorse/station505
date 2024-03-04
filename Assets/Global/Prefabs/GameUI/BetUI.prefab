@@ -402,6 +402,7 @@ MonoBehaviour:
   betText: {fileID: 3505441809228818022}
   playerCamera: {fileID: 0}
   quitGame: {fileID: 7412402252709083947}
+  uIMenu: {fileID: 0}
 --- !u!82 &7412402252709083947
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1275,7 +1276,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7839683365075149235}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3860394763097581074}
+        m_TargetAssemblyTypeName: BetUIMenu, Assembly-CSharp
+        m_MethodName: Lower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7913109538077137782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,7 +1409,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1784305042850974683}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3860394763097581074}
+        m_TargetAssemblyTypeName: BetUIMenu, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8078541994790553615
 GameObject:
   m_ObjectHideFlags: 0
