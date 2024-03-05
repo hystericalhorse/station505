@@ -62,7 +62,6 @@ public class BlackJackGameManager : MonoBehaviour
         {
             throw new Exception("Deck is null on HitClicked().");
         }
-
         Card drawnCard = deck.Draw();
 
         //Array.Resize(ref playerHand, playerHand.Count + 1);
@@ -94,8 +93,6 @@ public class BlackJackGameManager : MonoBehaviour
 			dealerHand.Add(deck.Draw());
 			AudioManager.instance.PlaySound("PlayCard");
         }
-
-
     }
 
     // Grabs the Card Values of Respective Hand
