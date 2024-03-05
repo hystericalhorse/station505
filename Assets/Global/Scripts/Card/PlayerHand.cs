@@ -30,7 +30,7 @@ public class PlayerHand : MonoBehaviour
 
         }
 
-        UpdateCardPositions();
+        //UpdateCardPositions();
     }
     public void DrawCardFromDeck(Card drawnCard)
     {
@@ -39,11 +39,11 @@ public class PlayerHand : MonoBehaviour
             float xOffset = (float)cards.Count * cardSpacing - (float)(maxCards - 1) / 2.0f * cardSpacing;
 
             // Calculate the spawn position based on the current hand position
-            Vector3 spawnPosition = transform.position + new Vector3(0f, cardSpawnHeight, xOffset);
+            Vector3 spawnPosition = transform.position + new Vector3(-0.5f, cardSpawnHeight, xOffset); ;
 
             // Instantiate a new card GameObject
             GameObject newCard = Instantiate(cardPrefab, spawnPosition, Quaternion.identity);
-            newCard.transform.rotation = Quaternion.Euler(cardSlantAngle, 0f, 0f);
+            newCard.transform.rotation = Quaternion.Euler(0f, 0f, cardSlantAngle);
             newCard.transform.parent = transform;
 
             // Add HoverCard component to the new card
@@ -73,56 +73,56 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
-    void UpdateCardPositions()
-    {
-        Camera mainCamera = Camera.main;
+    //void UpdateCardPositions()
+    //{
+    //    Camera mainCamera = Camera.main;
 
-        if (mainCamera == null)
-        {
-            Debug.LogError("Main camera not found.");
-            return;
-        }
+    //    if (mainCamera == null)
+    //    {
+    //        Debug.LogError("Main camera not found.");
+    //        return;
+    //    }
 
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Vector3.Distance(transform.position, mainCamera.transform.position);
-        Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
+    //    Vector3 mousePos = Input.mousePosition;
+    //    mousePos.z = Vector3.Distance(transform.position, mainCamera.transform.position);
+    //    Vector3 worldMousePos = mainCamera.ScreenToWorldPoint(mousePos);
 
-        GameObject closestCard = null;
-        float closestDistance = float.MaxValue;
+    //    GameObject closestCard = null;
+    //    float closestDistance = float.MaxValue;
 
-        foreach (var card in cards)
-        {
-            float distanceToMouse = Vector3.Distance(worldMousePos, card.transform.position);
+    //    foreach (var card in cards)
+    //    {
+    //        float distanceToMouse = Vector3.Distance(worldMousePos, card.transform.position);
 
-            if (distanceToMouse < closestDistance)
-            {
-                closestCard = card;
-                closestDistance = distanceToMouse;
-            }
-        }
+    //        if (distanceToMouse < closestDistance)
+    //        {
+    //            closestCard = card;
+    //            closestDistance = distanceToMouse;
+    //        }
+    //    }
 
-        foreach (var card in cards)
-        {
-            float spreadFactor = Mathf.Clamp01(1f - closestDistance / maxSpreadDistance);
+    //    foreach (var card in cards)
+    //    {
+    //        float spreadFactor = Mathf.Clamp01(1f - closestDistance / maxSpreadDistance);
 
-            if (card != closestCard)
-            {
-                Vector3 targetPosition = card.transform.position + (card.transform.position - closestCard.transform.position) * spreadFactor;
-                targetPosition.y = cardSpawnHeight; // Keep the Y position fixed
+    //        if (card != closestCard)
+    //        {
+    //            Vector3 targetPosition = card.transform.position + (card.transform.position - closestCard.transform.position) * spreadFactor;
+    //            targetPosition.y = cardSpawnHeight; // Keep the Y position fixed
 
-                if (Vector3.Dot(targetPosition - mainCamera.transform.position, mainCamera.transform.forward) > 0)
-                {
-                    card.transform.position = Vector3.Lerp(card.transform.position, targetPosition, Time.deltaTime * 5f);
-                }
-            }
-        }
+    //            if (Vector3.Dot(targetPosition - mainCamera.transform.position, mainCamera.transform.forward) > 0)
+    //            {
+    //                card.transform.position = Vector3.Lerp(card.transform.position, targetPosition, Time.deltaTime * 5f);
+    //            }
+    //        }
+    //    }
 
-        if (Input.GetMouseButtonDown(0) && closestCard != null && !isMovingCardToTable)
-        {
-            cards.Remove(closestCard);
-            StartCoroutine(MoveCardToTable(closestCard));
-        }
-    }
+    //    //if (Input.GetMouseButtonDown(0) && closestCard != null && !isMovingCardToTable)
+    //    //{
+    //    //    cards.Remove(closestCard);
+    //    //    StartCoroutine(MoveCardToTable(closestCard));
+    //    //}
+    //}
 
     IEnumerator MoveCardToTable(GameObject card)
     {
@@ -150,5 +150,15 @@ public class PlayerHand : MonoBehaviour
         }
 
         isMovingCardToTable = false;
+    }
+
+    public void DeleteAllCards()
+    {
+        foreach (var card in cards)
+        {
+            Destroy(card);
+        }
+
+        cards.Clear();
     }
 }

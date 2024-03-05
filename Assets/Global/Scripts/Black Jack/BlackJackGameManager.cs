@@ -30,6 +30,7 @@ public class BlackJackGameManager : MonoBehaviour
 
     //Deck
     private Deck deck = new();
+    public PlayerHand playerHandScript;
 
     void Start()
     {
@@ -63,12 +64,15 @@ public class BlackJackGameManager : MonoBehaviour
         }
 
         Card drawnCard = deck.Get[0];
+        playerHandScript.DrawCardFromDeck(drawnCard);
         deck.Get.RemoveAt(0);
 
         Array.Resize(ref playerHand, playerHand.Length + 1);
         playerHand[playerHand.Length - 1] = drawnCard;
 
         placeCard.Play();
+
+
 
         int handValue = GetCardValues(playerHand);
         if (handValue > 21) 
@@ -110,6 +114,11 @@ public class BlackJackGameManager : MonoBehaviour
             dealerHand[i] = deck.Get[0];
             deck.Get.RemoveAt(i);
             AudioManager.instance.PlaySound("PlayCard");
+        }
+
+        foreach (var card in playerHand)
+        {
+            playerHandScript.DrawCardFromDeck(card);
         }
 
 
@@ -199,6 +208,7 @@ public class BlackJackGameManager : MonoBehaviour
         playerHand = null;
         dealerHand = null;
         winnerBox.text = string.Empty;
+        playerHandScript.DeleteAllCards();
     }
 
     private IEnumerator WaitThreeSeconds()

@@ -654,14 +654,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e306d138b710a49a36b8755a60cd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 3910520133154797614, guid: 1874b17259c01b541a66aad02bf6c797,
+  cardPrefab: {fileID: 1923257098127407661, guid: bddc504f13399b4469a8783bc146fbd9,
     type: 3}
   maxCards: 10
-  cardSpacing: 0.1
-  cardSpawnHeight: -1
+  cardSpacing: 0.05
+  cardSpawnHeight: 0
   cardSlantAngle: 10
-  cardHoverDistance: 0.5
-  maxSpreadDistance: 5
+  cardHoverDistance: 0.1
+  maxSpreadDistance: 0.1
   tableTransform: {fileID: 0}
 --- !u!114 &368748430
 MonoBehaviour:
@@ -3185,6 +3185,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 955655237535481494, guid: 10a3fb1b0f1d6d24faee2406f288bd7a,
+        type: 3}
+      propertyPath: playerHandScript
+      value: 
+      objectReference: {fileID: 368748429}
     - target: {fileID: 2902616661279543138, guid: 10a3fb1b0f1d6d24faee2406f288bd7a,
         type: 3}
       propertyPath: m_Name
@@ -3712,6 +3717,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 11.545976
       objectReference: {fileID: 0}
+    - target: {fileID: 4385351318030510863, guid: 37dd59732b52fb945b207f06e16f775c,
+        type: 3}
+      propertyPath: playerHandScript
+      value: 
+      objectReference: {fileID: 368748429}
     - target: {fileID: 5019934079160366710, guid: 37dd59732b52fb945b207f06e16f775c,
         type: 3}
       propertyPath: m_fontSize

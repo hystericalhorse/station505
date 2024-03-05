@@ -195,7 +195,7 @@ public class GoFishGameManager : MonoBehaviour
         playerHand = null;
         opponentHand = null;
         winnerBox.text = string.Empty;
-
+        playerHandScript.DeleteAllCards();
         InitializeDeck();
     }
 

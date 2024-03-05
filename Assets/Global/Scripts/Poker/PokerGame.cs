@@ -29,6 +29,7 @@ public class PokerGame : MonoBehaviour
 
     // Deck 
     private Deck deck = new();
+    public PlayerHand playerHandScript;
 
     // AI Instance
     private Wheeler wheeler;
@@ -80,6 +81,9 @@ public class PokerGame : MonoBehaviour
         playerHand[playerHand.Length - 1] = drawnCard;
 
         AudioManager.instance.PlaySound("PlayCard");
+
+        playerHandScript.DrawCardFromDeck(drawnCard);
+        
     }
 
     // Deals Hand to Player and Dealer
@@ -114,6 +118,11 @@ public class PokerGame : MonoBehaviour
             dealerHand[i] = deck.Get[0];
             deck.Get.RemoveAt(i);
             AudioManager.instance.PlaySound("PlayCard");
+        }
+
+        foreach (var card in playerHand)
+        {
+            playerHandScript.DrawCardFromDeck(card);
         }
     }
 
@@ -189,6 +198,7 @@ public class PokerGame : MonoBehaviour
         playerHand = null;
         dealerHand = null;
         winnerBox.text = string.Empty;
+        playerHandScript.DeleteAllCards();
     }
 
     private IEnumerator WaitThreeSeconds()
