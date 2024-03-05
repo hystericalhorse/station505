@@ -133,6 +133,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 416914548}
     m_Modifications:
+    - target: {fileID: 563430916805430933, guid: ff034f3b33f593a468baf57b31acd0c0,
+        type: 3}
+      propertyPath: playerHandScript
+      value: 
+      objectReference: {fileID: 368748429}
     - target: {fileID: 3399468905344512605, guid: ff034f3b33f593a468baf57b31acd0c0,
         type: 3}
       propertyPath: m_Name
@@ -649,11 +654,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e306d138b710a49a36b8755a60cd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 7770590795951856209, guid: 06feccc7cd7804e42add279a2cacc41d,
+  cardPrefab: {fileID: 3910520133154797614, guid: 1874b17259c01b541a66aad02bf6c797,
     type: 3}
   maxCards: 10
-  cardSpacing: 0.5
-  cardSpawnHeight: 1
+  cardSpacing: 0.1
+  cardSpawnHeight: -1
   cardSlantAngle: 10
   cardHoverDistance: 0.5
   maxSpreadDistance: 5

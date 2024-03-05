@@ -14,7 +14,7 @@ public class PlayerHand : MonoBehaviour
 
     public Transform tableTransform; // Reference to the table object
 
-    private Deck deck;
+    public Deck deck;
     private List<GameObject> cards = new List<GameObject>();
     private bool isMovingCardToTable = false;
 
@@ -27,29 +27,49 @@ public class PlayerHand : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            DrawCardFromDeck();
+
         }
 
         UpdateCardPositions();
     }
-
-    void DrawCardFromDeck()
+    public void DrawCardFromDeck(Card drawnCard)
     {
-        if (deck.Cards.Count > 0 && cards.Count < maxCards)
+        if (cards.Count < maxCards)
         {
             float xOffset = (float)cards.Count * cardSpacing - (float)(maxCards - 1) / 2.0f * cardSpacing;
 
-            Vector3 spawnPosition = new Vector3(xOffset, cardSpawnHeight, 6f);
+            // Calculate the spawn position based on the current hand position
+            Vector3 spawnPosition = transform.position + new Vector3(0f, cardSpawnHeight, xOffset);
 
-            Card drawnCard = deck.Draw();
+            // Instantiate a new card GameObject
             GameObject newCard = Instantiate(cardPrefab, spawnPosition, Quaternion.identity);
             newCard.transform.rotation = Quaternion.Euler(cardSlantAngle, 0f, 0f);
             newCard.transform.parent = transform;
 
+            // Add HoverCard component to the new card
             HoverCard hoverCard = newCard.AddComponent<HoverCard>();
             hoverCard.Initialize(cardHoverDistance);
 
+            // Add the new card to the list of cards in the player's hand
             cards.Add(newCard);
+
+            // Update the CardObject with the drawn card's information
+            UpdateCardObject(newCard, drawnCard);
+        }
+    }
+
+
+    public void UpdateCardObject(GameObject cardObject, Card card)
+    {
+        CardObject cardObjectScript = cardObject.GetComponent<CardObject>();
+
+        if (cardObjectScript != null)
+        {
+            cardObjectScript.card = card;
+        }
+        else
+        {
+            Debug.LogWarning("CardObject script not found on the card GameObject.");
         }
     }
 
@@ -88,6 +108,7 @@ public class PlayerHand : MonoBehaviour
             if (card != closestCard)
             {
                 Vector3 targetPosition = card.transform.position + (card.transform.position - closestCard.transform.position) * spreadFactor;
+                targetPosition.y = cardSpawnHeight; // Keep the Y position fixed
 
                 if (Vector3.Dot(targetPosition - mainCamera.transform.position, mainCamera.transform.forward) > 0)
                 {

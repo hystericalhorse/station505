@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8835881742160505300}
   - component: {fileID: 5149510589987731309}
   - component: {fileID: 1745035071698526502}
+  - component: {fileID: 2771285698473178326}
   m_Layer: 0
   m_Name: Card 1
   m_TagString: Untagged
@@ -27,14 +28,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3910520133154797614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0017651, y: 53.319, z: -0.0040744}
-  m_LocalScale: {x: 0.015505104, y: 0.015505104, z: 0.015505104}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.0018173668, y: 53.839, z: -0.0041279662}
+  m_LocalScale: {x: 0.005911786, y: 0.005911786, z: 0.005911786}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7933520532165628049}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &8835881742160505300
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,6 +108,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3660652376195365350, guid: a5d2188aa16c3f946ab2095a056afd65, type: 3}
+--- !u!114 &2771285698473178326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910520133154797614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baccf2c3e1258c74294844dd8d4f027f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card:
+    suit: 0
+    rank: 0
+  cardRenderer: {fileID: 9102524986008005630}
+  cardTextures: []
 --- !u!1001 &7607494145757509498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,6 +211,12 @@ PrefabInstance:
 --- !u!4 &7933520532165628049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5d2188aa16c3f946ab2095a056afd65,
+    type: 3}
+  m_PrefabInstance: {fileID: 7607494145757509498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9102524986008005630 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: a5d2188aa16c3f946ab2095a056afd65,
     type: 3}
   m_PrefabInstance: {fileID: 7607494145757509498}
   m_PrefabAsset: {fileID: 0}

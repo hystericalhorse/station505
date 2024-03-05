@@ -20,6 +20,7 @@ public class GoFishGameManager : MonoBehaviour
 
     // Player Hand
     private List<Card> playerHand;
+    public PlayerHand playerHandScript;
 
     // Opponent Hand (Dealer in this case)
     private List<Card> opponentHand;
@@ -79,6 +80,12 @@ public class GoFishGameManager : MonoBehaviour
         // Deal 7 cards to each player
         DealCards(playerHand, 7);
         DealCards(opponentHand, 7);
+
+        // Use DrawCardFromDeck to create cards in the player's hand
+        foreach (var card in playerHand)
+        {
+            playerHandScript.DrawCardFromDeck(card);
+        }
     }
 
     // Deal a specified number of cards to a player
