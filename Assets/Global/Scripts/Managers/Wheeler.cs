@@ -6,7 +6,7 @@ public class Wheeler
 {
     // Hi, my name is Wheeler!
 
-    Hand myHand;
+    Hand myHand = new();
 
     public void DrawCards(ref Deck deck, uint count) => myHand.Draw(ref deck, count);
     public void DiscardCard(ref Deck discards, Card card) => myHand.Discard(card, ref discards);

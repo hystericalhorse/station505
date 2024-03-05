@@ -22,11 +22,11 @@ public class BlackJackGameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winnerBox;
 
     //Player Hand
-    private Card[] playerHand;
+    private List<Card> playerHand = new();
 
     //Dealer 
     private Wheeler wheeler;
-    private Card[] dealerHand;
+    private List<Card> dealerHand = new();
 
     //Deck
     private Deck deck = new();
@@ -60,21 +60,17 @@ public class BlackJackGameManager : MonoBehaviour
     {
         if (deck == null || deck.Get.Count == 0)
         {
-            Debug.Log("Deck is Empty/Null");
+            throw new Exception("Deck is null on HitClicked().");
         }
 
-        Card drawnCard = deck.Get[0];
-        playerHandScript.DrawCardFromDeck(drawnCard);
-        deck.Get.RemoveAt(0);
+        Card drawnCard = deck.Draw();
 
-        Array.Resize(ref playerHand, playerHand.Length + 1);
-        playerHand[playerHand.Length - 1] = drawnCard;
+        //Array.Resize(ref playerHand, playerHand.Count + 1);
+        playerHand.Add(drawnCard);
 
-        placeCard.Play();
+        //placeCard.Play();
 
-
-
-        int handValue = GetCardValues(playerHand);
+        int handValue = GetCardValues(playerHand.ToArray());
         if (handValue > 21) 
         {
             Debug.Log("Player Lost");
@@ -85,40 +81,18 @@ public class BlackJackGameManager : MonoBehaviour
     // Deals Cards to Player and Dealer
     private void DealClicked()
     {
-        if (deck == null || deck.Get.Count == 0)
-        {
-            Debug.Log("Deck is Empty/Null");
-        }
-        
-        deck.Shuffle();
+		deck = new();
 
-        if (playerHand == null)
-        {
-            playerHand = new Card[2];
-        }
+		deck.Shuffle();
 
-        if (dealerHand == null)
-        {
-            dealerHand = new Card[2];
-        }
+		playerHand = new();
+		dealerHand = new();
 
         for (int i = 0; i < 2; i++) 
         {
-            playerHand[i] = deck.Get[0];
-            deck.Get.RemoveAt(i);
-            AudioManager.instance.PlaySound("PlayCard");
-        }
-
-        for (int i = 0; i < 2; i++)
-        {
-            dealerHand[i] = deck.Get[0];
-            deck.Get.RemoveAt(i);
-            AudioManager.instance.PlaySound("PlayCard");
-        }
-
-        foreach (var card in playerHand)
-        {
-            playerHandScript.DrawCardFromDeck(card);
+            playerHand.Add(deck.Draw());
+			dealerHand.Add(deck.Draw());
+			AudioManager.instance.PlaySound("PlayCard");
         }
 
 
@@ -159,8 +133,8 @@ public class BlackJackGameManager : MonoBehaviour
 
     private void DetermineWinner() 
     {
-        int playerValue = GetCardValues(playerHand);
-        int dealerValue = GetCardValues(dealerHand);
+        int playerValue = GetCardValues(playerHand.ToArray());
+        int dealerValue = GetCardValues(dealerHand.ToArray());
 
         if (playerValue > 21 && dealerValue < 21)
         {
@@ -205,8 +179,8 @@ public class BlackJackGameManager : MonoBehaviour
     private void RestartGame()
     {
         deck = new Deck();
-        playerHand = null;
-        dealerHand = null;
+        playerHand = new();
+        dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
     }

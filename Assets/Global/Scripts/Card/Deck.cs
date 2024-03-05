@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -109,6 +110,7 @@ public class Deck
 public class Hand
 {
 	public List<Card> hand;
+	public Hand() { hand = new(); }
 
 	public void Draw(ref Deck deck) => hand.Add(deck.Draw());
 	public void Draw(ref Deck deck, uint count = 1) => hand.AddRange(deck.Draw(count));
