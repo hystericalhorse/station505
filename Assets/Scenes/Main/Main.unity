@@ -2872,6 +2872,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1779885166}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1568068384 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8351597594704448568, guid: a8bd2bd49dabb8140889b1c1fc209387,
+    type: 3}
+  m_PrefabInstance: {fileID: 1831241601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1627599055
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,6 +3606,11 @@ PrefabInstance:
       propertyPath: blackJackUI
       value: 
       objectReference: {fileID: 647951001}
+    - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: robotVoiceWar
+      value: 
+      objectReference: {fileID: 1568068384}
     - target: {fileID: 5861648662470124451, guid: a8bd2bd49dabb8140889b1c1fc209387,
         type: 3}
       propertyPath: m_Volume
@@ -3630,6 +3641,11 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 8351597594704448568, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 654b91a2cf241ce4785c27c96b471eb7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
