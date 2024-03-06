@@ -542,7 +542,7 @@ MonoBehaviour:
   sensitivity: 0.25
   maxYAngle: 80
   maxXAngle: 30
-  smoothCamera: 1
+  smoothCamera: 0
   defaultRotation: {x: 0, y: 0}
   Enable: 1
 --- !u!114 &3404144220683514081
@@ -561,7 +561,7 @@ MonoBehaviour:
     type: 3}
   maxCards: 10
   cardSpacing: 0.05
-  cardSpawnHeight: 0
+  cardSpawnHeight: -0.025
   cardSlantAngle: 10
   cardHoverDistance: 0.1
   maxSpreadDistance: 0.1

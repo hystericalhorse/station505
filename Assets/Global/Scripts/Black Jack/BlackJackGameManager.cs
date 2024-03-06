@@ -157,11 +157,11 @@ public class BlackJackGameManager : MonoBehaviour
 
 		dealerValueText.text = dealerValue.ToString();
 
-		if (playerValue > 21 && dealerValue < 21)
+		if (playerValue > 21 && dealerValue <= 21)
         {
             winnerBox.text = "Player Busts. Dealer Wins";
             BJUI.Bust();
-        } else if (playerValue < 21 && dealerValue > 21) 
+        } else if (playerValue <= 21 && dealerValue > 21) 
         {
 			winnerBox.text = "Dealer Busts. Player Wins.";
             BJUI.Bust();

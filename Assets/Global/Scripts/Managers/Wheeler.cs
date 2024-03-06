@@ -51,9 +51,22 @@ public class Wheeler
     public Blackjack.Move PlayBlackjack()
     {
         // In Blackjack, Hand[0] is always hidden.
-        if (myHand.Count == 2 && (myHand.hand[1].rank == Rank.Ace || myHand.hand[1].GetBlackjackValue() == 10))
+        if (myHand.Count == 2 && (myHand.hand[1].rank == Rank.Ace))
         {
             return Blackjack.Move.Stand;
+        }
+
+        if (myHand.hand[1].GetBlackjackValue() >= 7)
+        {
+            switch (Random.Range(0,1))
+            {
+                default:
+				case 0:
+                    break;
+				case 1:
+					return Blackjack.Move.Stand;
+			}
+            
         }
 
 		int handValue = 0;
@@ -71,7 +84,7 @@ public class Wheeler
         for (int i = 0; i < aces.Count; i++)
 			handValue += aces[i].GetBlackjackValue(acesHigh: handValue < 10);
 
-        if (handValue >= 17)
+        if (handValue >= 10)
             return Blackjack.Move.Stand;
         else
             return Blackjack.Move.Hit;
