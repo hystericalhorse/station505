@@ -144,7 +144,6 @@ public class PokerGameManager : MonoBehaviour
 			}
             else
             {
-                GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet);
                 winnerBox.text = "Dealer Wins Tie";
                 StartCoroutine(WaitThreeSecondsThenRestart());
 			}
@@ -172,7 +171,7 @@ public class PokerGameManager : MonoBehaviour
     {
 		GameManager.instance.currentBet = 0;
         yield return new WaitForSeconds(3f);
-
+		GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
 		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 		RestartGame();
 	}

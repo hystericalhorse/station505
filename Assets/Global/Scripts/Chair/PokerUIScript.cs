@@ -20,14 +20,12 @@ public class PokerUIScript : MonoBehaviour
     public void deal()
     {
         dealBtn.gameObject.SetActive(false);
-        hitBtn.gameObject.SetActive(true);
         standBtn.gameObject.SetActive(true);
         foldBtn.gameObject.SetActive(true);
     }
 
     public void Stand()
     {
-        hitBtn.gameObject.SetActive(false);
         standBtn.gameObject.SetActive(false);
         foldBtn.gameObject.SetActive(false);
         Invoke(nameof(UIReset), 3);
