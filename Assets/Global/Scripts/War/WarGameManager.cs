@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,8 +24,10 @@ public class WarGameManager : MonoBehaviour
 	[SerializeField] private WarUIScript warUI;
 
     // Cards
-	private List<Card> playerHand = new();
-	private List<Card> dealerHand = new();
+	//private List<Card> playerHand = new();
+	private Deck playerHand = new();
+	//private List<Card> dealerHand = new();
+	private Deck dealerHand = new();
 
     // Deck
 	private Deck deck = new();
@@ -46,11 +49,9 @@ public class WarGameManager : MonoBehaviour
 
 	private void HitClicked()
 	{
-		Card playerCard = playerHand[0];
-		playerHand.Remove(playerCard);
+		Card playerCard = playerHand.Draw();
 
-		Card dealerCard = dealerHand[0];
-		dealerHand.Remove(dealerCard);
+		Card dealerCard = dealerHand.Draw();
 
 		if (playerCard.rank > dealerCard.rank) // player has higher value
 		{
@@ -86,22 +87,19 @@ public class WarGameManager : MonoBehaviour
 
 		int deckHalf = deck.Get.Count / 2;
 
+		playerHand.Cards.Clear();
+		dealerHand.Cards.Clear();
+
 		//sets the hands
 		for (int i = 0; i < deckHalf; i++)
 		{
-			Card drawnCard = deck.Draw();
-			playerHand.Add(drawnCard);
-			//playerHandScript.DrawCardFromDeck(drawnCard);
-
+			playerHand.Cards.Add(deck.Draw());
 			AudioManager.instance.PlaySound("PlayCard");
-
-			
 		}
-		for (int i = deckHalf; i < deck.Get.Count; i++)
+		for (int i = 0; i < deckHalf; i++)
 		{
-			Card drawnCard = deck.Draw();
-			dealerHand.Add(drawnCard);
-			playerHandScript.DrawCardFromDeck(drawnCard);
+			dealerHand.Cards.Add(deck.Draw());
+			//playerHandScript.DrawCardFromDeck(drawnCard);
 
 			AudioManager.instance.PlaySound("PlayCard");
 		}
@@ -113,6 +111,8 @@ public class WarGameManager : MonoBehaviour
 		playerHand = new();
 		dealerHand = new();
 		winnerBox.text = string.Empty;
+		playerPoints = 0;
+		dealerPoints = 0;
 	}
 
 	private void CheckWinner()
@@ -121,28 +121,28 @@ public class WarGameManager : MonoBehaviour
 		{
 			winnerBox.text = "Player Won Game";
 			GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-			StartCoroutine(WaitThreeSeconds(() => {
+			StartCoroutine(WaitFiveSeconds(() => {
 				RestartGame();
 			}));
 		}
 		else if (dealerPoints >= 10)
 		{
 			winnerBox.text = "Dealer Won Game";
-			StartCoroutine(WaitThreeSeconds(() => {
+			StartCoroutine(WaitFiveSeconds(() => {
 				RestartGame();
 			}));
 		}
 	}
 
 	private delegate void AfterThreeSeconds();
-	private IEnumerator WaitThreeSeconds(AfterThreeSeconds afterDel = null)
+	private IEnumerator WaitFiveSeconds(AfterThreeSeconds afterDel = null)
 	{
 		playerPointText.text = "000";
 		dealerPointText.text = "000";
 		GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
 		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 		warUI.ResetUI();
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(5f);
 		afterDel?.Invoke();
 	}
 
