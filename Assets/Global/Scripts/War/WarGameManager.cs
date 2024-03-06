@@ -139,6 +139,8 @@ public class WarGameManager : MonoBehaviour
 	private delegate void AfterThreeSeconds();
 	private IEnumerator WaitThreeSeconds(AfterThreeSeconds afterDel = null)
 	{
+		playerPointText.text = "000";
+		dealerPointText.text = "000";
 		GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
 		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 		warUI.ResetUI();
