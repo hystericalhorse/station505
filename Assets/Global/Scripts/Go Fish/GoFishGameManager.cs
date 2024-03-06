@@ -46,14 +46,13 @@ public class GoFishGameManager : MonoBehaviour
         askBtn.onClick.AddListener(() => AskClicked());
         betBtn.onClick.AddListener(() => BetClicked());
 
-        InitializeDeck();
+        RestartGame();
     }
 
     // Initialize the deck with all cards
     private void InitializeDeck()
     {
         deck = new Deck();
-		deck.hand = playerHandScript;
 		deck.Shuffle();
     }
 

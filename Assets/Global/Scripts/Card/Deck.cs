@@ -49,7 +49,6 @@ public class Card
 
 public class Deck
 {
-	public PlayerHand hand;
     public List<Card> Cards { get; set; }
 	public List<Card> Get => Cards;
 
@@ -91,7 +90,6 @@ public class Deck
 	{
 		Card card = Cards[0];
 		Cards.Remove(Cards[0]);
-		hand.DrawCardFromDeck(card);
 		return card;
 	}
 

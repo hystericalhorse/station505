@@ -62,14 +62,13 @@ public class BlackJackGameManager : MonoBehaviour
         {
             throw new Exception("Deck is null on HitClicked().");
         }
-        Card drawnCard = deck.Draw();
 
-        //Array.Resize(ref playerHand, playerHand.Count + 1);
-        playerHand.Add(drawnCard);
+		Card drawnCard = deck.Draw();
+		playerHand.Add(drawnCard);
 
-        //placeCard.Play();
+		//placeCard.Play();
 
-        int handValue = GetCardValues(playerHand.ToArray());
+		int handValue = GetCardValues(playerHand.ToArray());
         if (handValue > 21) 
         {
             Debug.Log("Player Lost");
@@ -85,7 +84,10 @@ public class BlackJackGameManager : MonoBehaviour
 
         for (int i = 0; i < 2; i++) 
         {
-            playerHand.Add(deck.Draw());
+            Card drawnCard = deck.Draw();
+		    playerHand.Add(drawnCard);
+            playerHandScript.DrawCardFromDeck(drawnCard);
+
 			dealerHand.Add(deck.Draw());
 			AudioManager.instance.PlaySound("PlayCard");
         }
@@ -176,7 +178,6 @@ public class BlackJackGameManager : MonoBehaviour
         dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
-        deck.hand = playerHandScript;
     }
 
     private IEnumerator WaitThreeSeconds()

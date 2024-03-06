@@ -77,10 +77,10 @@ public class PokerGameManager : MonoBehaviour
         Card drawnCard = deck.Draw();
 
         playerHand.Add(drawnCard);
+        playerHandScript.DrawCardFromDeck(drawnCard);
 
         AudioManager.instance.PlaySound("PlayCard");
 
-        playerHandScript.DrawCardFromDeck(drawnCard);
         
     }
 
@@ -182,7 +182,6 @@ public class PokerGameManager : MonoBehaviour
         dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
-        deck.hand = playerHandScript;
     }
 
     private IEnumerator WaitThreeSeconds()
