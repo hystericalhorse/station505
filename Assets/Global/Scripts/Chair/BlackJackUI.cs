@@ -26,12 +26,14 @@ public class BlackJackUI : MonoBehaviour
     {
         hitBTN.gameObject.SetActive(false);
         standBTN.gameObject.SetActive(false);
-        UIReset();
+        dealBTN.gameObject.SetActive(true);
     }
 
 	public void UIReset()
 	{
-        dealBTN.gameObject.SetActive(true);
+		hitBTN.gameObject.SetActive(false);
+		standBTN.gameObject.SetActive(false);
+		dealBTN.gameObject.SetActive(true);
 	}
 
 	// Update is called once per frame

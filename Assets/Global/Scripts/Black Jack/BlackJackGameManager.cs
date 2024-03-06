@@ -20,8 +20,9 @@ public class BlackJackGameManager : MonoBehaviour
 
     // UI
     [SerializeField] private TextMeshProUGUI winnerBox;
-    [SerializeField] private TextMeshProUGUI playerValue;
+    [SerializeField] private TextMeshProUGUI playerValueText;
     [SerializeField] private TextMeshProUGUI dealerValueText;
+    [SerializeField] private BlackJackUI BJUI;
 
     //Player Hand
     private List<Card> playerHand = new();
@@ -74,7 +75,7 @@ public class BlackJackGameManager : MonoBehaviour
         {
             DetermineWinner();
         }
-        playerValue.text = handValue.ToString();
+        playerValueText.text = handValue.ToString();
     }
 
     // Deals Cards to Player and Dealer
@@ -165,6 +166,7 @@ public class BlackJackGameManager : MonoBehaviour
 		StartCoroutine(WaitThreeSeconds(() => {
             GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
 			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+            BJUI.UIReset();
 			RestartGame();
 		}));
 	}
@@ -176,6 +178,9 @@ public class BlackJackGameManager : MonoBehaviour
         dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
+        playerValueText.text = "000";
+        dealerValueText.text = "000";
+        
     }
 
     private delegate void AfterThreeSeconds();

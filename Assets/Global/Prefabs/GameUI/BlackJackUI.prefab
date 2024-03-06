@@ -853,7 +853,6 @@ MonoBehaviour:
   dealBTN: {fileID: 8356087877604993017}
   standBTN: {fileID: 8031908983965695676}
   hitBTN: {fileID: 6078025061198026945}
-  DealBTN: {fileID: 6146653298489612489}
 --- !u!1 &3576247226080858479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,8 +2024,9 @@ MonoBehaviour:
   betBtn: {fileID: 6146653298489612489}
   placeCard: {fileID: 0}
   winnerBox: {fileID: 4529417538179913591}
-  playerValue: {fileID: 6616210688378802916}
+  playerValueText: {fileID: 6616210688378802916}
   dealerValueText: {fileID: 8236881161034596613}
+  BJUI: {fileID: 5277588467119440317}
   playerHandScript: {fileID: 0}
 --- !u!1001 &3811309224093999539
 PrefabInstance:
