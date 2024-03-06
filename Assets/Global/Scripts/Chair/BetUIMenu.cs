@@ -91,4 +91,10 @@ public class BetUIMenu : MonoBehaviour
     {
         
     }
+
+	public void UpdateValues()
+    {
+		playerMoneyText.text = GameManager.instance.GetMoney().ToString();
+		startingMoney = GameManager.instance.GetMoney();
+	}
 }
