@@ -91,7 +91,7 @@ public class WarGameManager : MonoBehaviour
 		{
 			Card drawnCard = deck.Draw();
 			playerHand.Add(drawnCard);
-			playerHandScript.DrawCardFromDeck(drawnCard);
+			//playerHandScript.DrawCardFromDeck(drawnCard);
 
 			AudioManager.instance.PlaySound("PlayCard");
 
@@ -105,8 +105,6 @@ public class WarGameManager : MonoBehaviour
 
 			AudioManager.instance.PlaySound("PlayCard");
 		}
-
-		playerHandScript.FlipCard(0);
 	}
 
 	private void RestartGame()
