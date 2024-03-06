@@ -8,7 +8,6 @@ public class BlackJackUI : MonoBehaviour
     [SerializeField] Button dealBTN;
     [SerializeField] Button standBTN;
     [SerializeField] Button hitBTN;
-    [SerializeField] Button DealBTN;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +20,13 @@ public class BlackJackUI : MonoBehaviour
         standBTN.gameObject.SetActive(true);
         hitBTN.gameObject.SetActive(true);
         dealBTN.gameObject.SetActive(false);
-        dealBTN.gameObject.SetActive(false);
     }
 
     public void Stand()
     {
         hitBTN.gameObject.SetActive(false);
         standBTN.gameObject.SetActive(false);
-        Invoke(nameof(UIReset), 3);
+        UIReset();
     }
 
 	public void UIReset()
