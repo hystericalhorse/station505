@@ -26,7 +26,8 @@ public class BlackJackUI : MonoBehaviour
     {
         hitBTN.gameObject.SetActive(false);
         standBTN.gameObject.SetActive(false);
-        dealBTN.gameObject.SetActive(true);
+        dealBTN.gameObject.SetActive(false);
+        Invoke(nameof(UIReset), 3);
     }
 
 	public void UIReset()
