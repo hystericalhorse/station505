@@ -539,10 +539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb6356eedbcf7e4e8c70b972f8114e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.5
+  sensitivity: 0.25
   maxYAngle: 80
   maxXAngle: 30
-  smoothCamera: 0
+  smoothCamera: 1
   defaultRotation: {x: 0, y: 0}
   Enable: 1
 --- !u!114 &3404144220683514081

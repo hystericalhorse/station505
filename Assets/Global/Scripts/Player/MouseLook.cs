@@ -4,6 +4,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public float sensitivity = 2f;
+	float storedSensitivity;
     [Range(0,360)] public float maxYAngle = 80f; 
     [Range(0,360)] public float maxXAngle = 30f;
 
@@ -36,11 +37,18 @@ public class MouseLook : MonoBehaviour
 
 		distanceFromCenterX = screenCenter.x - (2 * (screenCenter.x / 3));
 		distanceFromCenterY = screenCenter.y - (2 * (screenCenter.y / 3));
+		storedSensitivity = sensitivity;
 	}
 
 	void Update()
     {
         if (!Enable) return;
+
+		if (Input.GetKeyDown(KeyCode.F5))
+		{
+			smoothCamera = !smoothCamera;
+		}
+
 		mousePos = Input.mousePosition;
 
 		var xy = mousePos - screenCenter;
@@ -80,8 +88,14 @@ public class MouseLook : MonoBehaviour
 			rotationX = destinationX;
 			rotationY = destinationY;
 		}
-		
 
 		transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+
+		sensitivity += Input.mouseScrollDelta.normalized.y * Time.smoothDeltaTime;
+		if (sensitivity < 0) sensitivity = 0;
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			sensitivity = storedSensitivity;
+		}
 	}
 }
