@@ -53,14 +53,6 @@ public class GoFishGameManager : MonoBehaviour
     private void InitializeDeck()
     {
         deck = new Deck();
-
-        foreach (Suit s in Enum.GetValues(typeof(Suit)))
-        {
-            foreach (Rank r in Enum.GetValues(typeof(Rank)))
-            {
-                deck.Get.Add(new Card(s, r));
-            }
-        }
     }
 
     // Deals Cards to Player and Opponent
@@ -93,8 +85,7 @@ public class GoFishGameManager : MonoBehaviour
     {
         for (int i = 0; i < numCards; i++)
         {
-            hand.Add(deck.Get[0]);
-            deck.Get.RemoveAt(0);
+            hand.Add(deck.Draw());
             AudioManager.instance.PlaySound("PlayCard");
         }
     }
@@ -140,8 +131,7 @@ public class GoFishGameManager : MonoBehaviour
     {
         if (deck.Get.Count > 0)
         {
-            hand.Add(deck.Get[0]);
-            deck.Get.RemoveAt(0);
+            hand.Add(deck.Draw());
             AudioManager.instance.PlaySound("PlayCard");
         }
         else
@@ -192,8 +182,8 @@ public class GoFishGameManager : MonoBehaviour
 
     private void RestartGame()
     {
-        playerHand = null;
-        opponentHand = null;
+        playerHand = new();
+        opponentHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
         InitializeDeck();

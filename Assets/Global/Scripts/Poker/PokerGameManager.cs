@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PokerGame : MonoBehaviour
+public class PokerGameManager : MonoBehaviour
 {
     // Game Buttons
     [SerializeField] private Button dealBtn;
@@ -22,10 +22,10 @@ public class PokerGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winnerBox;
 
     // Player Hand
-    private Card[] playerHand;
+    private List<Card> playerHand;
 
-    // Dealer Hand 
-    private Card[] dealerHand;
+	// Dealer Hand 
+	private List<Card> dealerHand;
 
     // Deck 
     private Deck deck = new();
@@ -74,11 +74,9 @@ public class PokerGame : MonoBehaviour
             Debug.Log("Deck is Empty/Null");
         }
 
-        Card drawnCard = deck.Get[0];
-        deck.Get.RemoveAt(0);
+        Card drawnCard = deck.Draw();
 
-        Array.Resize(ref playerHand, playerHand.Length + 1);
-        playerHand[playerHand.Length - 1] = drawnCard;
+        playerHand.Add(drawnCard);
 
         AudioManager.instance.PlaySound("PlayCard");
 
@@ -98,26 +96,24 @@ public class PokerGame : MonoBehaviour
 
         if (playerHand == null)
         {
-            playerHand = new Card[5];
+            playerHand = new();
         }
 
         if (dealerHand == null)
         {
-            dealerHand = new Card[5];
+            dealerHand = new();
         }
 
         for (int i = 0; i < 5; i++)
         {
-            playerHand[i] = deck.Get[0];
-            deck.Get.RemoveAt(i);
+            playerHand.Add(deck.Draw());
             AudioManager.instance.PlaySound("PlayCard");
         }
 
         for (int i = 0; i < 5; i++)
         {
-            dealerHand[i] = deck.Get[0];
-            deck.Get.RemoveAt(i);
-            AudioManager.instance.PlaySound("PlayCard");
+            dealerHand.Add(deck.Draw());
+			AudioManager.instance.PlaySound("PlayCard");
         }
 
         foreach (var card in playerHand)
@@ -128,12 +124,12 @@ public class PokerGame : MonoBehaviour
 
     private void DetermineWinner()
     {
-        PokerHand player = CardAlgorithms.EvaluateHand(playerHand, out var playerHighCard);
-        PokerHand dealer = CardAlgorithms.EvaluateHand(dealerHand, out var dealerHighCard);
+        PokerHand player = CardAlgorithms.EvaluateHand(playerHand.ToArray(), out var playerHighCard);
+        PokerHand dealer = CardAlgorithms.EvaluateHand(dealerHand.ToArray(), out var dealerHighCard);
 
         if (player > dealer)
         {
-            winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand, out playerHighCard).ToString();
+            winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand.ToArray(), out playerHighCard).ToString();
             GameManager.instance.SetMoney( GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
@@ -143,7 +139,7 @@ public class PokerGame : MonoBehaviour
         }
         if (player < dealer) 
         {
-            winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand, out dealerHighCard).ToString();
+            winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand.ToArray(), out dealerHighCard).ToString();
             GameManager.instance.currentBet = 0;
             StartCoroutine(WaitThreeSeconds());
 			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
@@ -195,8 +191,8 @@ public class PokerGame : MonoBehaviour
     private void RestartGame()
     {
         deck = new Deck();
-        playerHand = null;
-        dealerHand = null;
+        playerHand = new();
+        dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
     }

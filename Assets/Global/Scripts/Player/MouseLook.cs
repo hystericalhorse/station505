@@ -13,6 +13,9 @@ public class MouseLook : MonoBehaviour
 	private float rotationY = 0;
 	private float destinationY = 0;
 
+	[SerializeField] bool smoothCamera = false;
+	public Vector2 defaultRotation = Vector2.zero;
+
     public bool Enable = false;
 	private Vector2 mousePos;
 
@@ -56,28 +59,28 @@ public class MouseLook : MonoBehaviour
 		// RECENTER
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			destinationX = 0;
-			destinationY = 0;
+			destinationX = defaultRotation.x;
+			destinationY = defaultRotation.y;
 		}
 
-		//float mouseX = Input.GetAxis("Mouse X");
-		//float mouseY = Input.GetAxis("Mouse Y");
-		//
-		//transform.Rotate(Vector3.up * mouseX * sensitivity);
-		//
-		//
-		//rotationX -= mouseY * sensitivity;
-		//rotationX = Mathf.Clamp(rotationX, -maxYAngle, maxYAngle);
-
-		if (!Mathf.Approximately(destinationX, rotationX))
+		if (smoothCamera)
 		{
-			rotationX = Mathf.Lerp(rotationX, destinationX, Time.smoothDeltaTime);
-		}
+			if (!Mathf.Approximately(destinationX, rotationX))
+			{
+				rotationX = Mathf.Lerp(rotationX, destinationX, Time.smoothDeltaTime);
+			}
 
-		if (!Mathf.Approximately(destinationY, rotationY))
-		{
-			rotationY = Mathf.Lerp(rotationY, destinationY, Time.smoothDeltaTime);
+			if (!Mathf.Approximately(destinationY, rotationY))
+			{
+				rotationY = Mathf.Lerp(rotationY, destinationY, Time.smoothDeltaTime);
+			}
 		}
+		else
+		{
+			rotationX = destinationX;
+			rotationY = destinationY;
+		}
+		
 
 		transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
 	}
