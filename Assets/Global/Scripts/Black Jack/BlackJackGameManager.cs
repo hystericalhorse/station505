@@ -156,28 +156,31 @@ public class BlackJackGameManager : MonoBehaviour
         int dealerValue = GetCardValues(dealerHand.ToArray());
 
 		dealerValueText.text = dealerValue.ToString();
-
-		if (playerValue > 21 && dealerValue < 21)
+		if (playerValue > 21)
+		{
+			winnerBox.text = "Player Busts. Dealer Wins";
+		}
+        else
+		if (dealerValue > 21 && playerValue <= 21)
         {
-            winnerBox.text = "Player Busts. Dealer Wins";
-            
-        } else if (playerValue < 21 && dealerValue > 21) 
+			winnerBox.text = "Dealer Busts. Player Wins.";
+			GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
+		}
+        else
+        if (playerValue > dealerValue)
         {
-            winnerBox.text = "Dealer Busts. Player Wins";
-            GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-			
-        } else if (playerValue > dealerValue)
+			winnerBox.text = "Player Wins with " + playerValue.ToString();
+			GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
+		}
+        else
+        if (dealerValue > playerValue)
         {
-            winnerBox.text = "Player Wins with " + playerValue.ToString();
-            GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-        } else if (dealerValue > playerValue)
-        {
-            winnerBox.text = "Dealer Wins with " + dealerValue.ToString();
-        }
+			winnerBox.text = "Dealer Wins with " + dealerValue.ToString();
+		}
         else
         {
-            winnerBox.text = "It's a Draw";
-        }
+			winnerBox.text = "It's a Draw";
+		}
 
 		GameManager.instance.currentBet = 0;
 		StartCoroutine(WaitThreeSeconds(() => {
