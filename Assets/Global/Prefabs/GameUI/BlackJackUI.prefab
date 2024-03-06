@@ -2025,6 +2025,8 @@ MonoBehaviour:
   betBtn: {fileID: 6146653298489612489}
   placeCard: {fileID: 0}
   winnerBox: {fileID: 4529417538179913591}
+  playerValue: {fileID: 6616210688378802916}
+  dealerValueText: {fileID: 8236881161034596613}
   playerHandScript: {fileID: 0}
 --- !u!1001 &3811309224093999539
 PrefabInstance:
