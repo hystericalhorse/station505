@@ -34,6 +34,13 @@ public class UIMenu : MonoBehaviour
     [SerializeField] private BetUIMenu betMenu;
 
     public AudioMixer audioMixer;
+
+    public PlayerHand hand;
+
+    public GameObject HoloCard;
+    public GameObject NormalCard;
+
+
 	public void Awake()
 	{
         currentMenu = mainMenu;
@@ -140,11 +147,15 @@ public class UIMenu : MonoBehaviour
     public void NormalCardSelect()
     {
         currentCardType.text = "Normal";
+
+        hand.cardPrefab = NormalCard;
     }
 
     public void HoloCardSelect()
     {
         currentCardType.text = "Holographic";
+
+       hand.cardPrefab = HoloCard;
     }
 
     public void DeckOneSelect()

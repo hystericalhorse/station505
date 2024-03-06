@@ -3567,6 +3567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
         type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 368748429}
+    - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
       propertyPath: WarUI
       value: 
       objectReference: {fileID: 1511936961}
@@ -3592,9 +3597,21 @@ PrefabInstance:
       objectReference: {fileID: 1556783179}
     - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
         type: 3}
+      propertyPath: HoloCard
+      value: 
+      objectReference: {fileID: 1923257098127407661, guid: bddc504f13399b4469a8783bc146fbd9,
+        type: 3}
+    - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
       propertyPath: goFishUI
       value: 
       objectReference: {fileID: 1511936961}
+    - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
+        type: 3}
+      propertyPath: NormalCard
+      value: 
+      objectReference: {fileID: 1923257098127407661, guid: 5c3d54790b4a3734ebf117b3adb6c6f6,
+        type: 3}
     - target: {fileID: 4789096981517784801, guid: a8bd2bd49dabb8140889b1c1fc209387,
         type: 3}
       propertyPath: blackJackUI
@@ -4045,6 +4062,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3404144220683514081, guid: 9fc499753e6a39a47806c681cca10dd8,
+        type: 3}
+      propertyPath: cardNonHoloPrefab
+      value: 
+      objectReference: {fileID: 1923257098127407661, guid: 5c3d54790b4a3734ebf117b3adb6c6f6,
+        type: 3}
     - target: {fileID: 3444838288330398116, guid: 9fc499753e6a39a47806c681cca10dd8,
         type: 3}
       propertyPath: sensitivity
