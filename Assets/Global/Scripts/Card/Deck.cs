@@ -49,7 +49,7 @@ public class Card
 
 public class Deck
 {
-	public PlayerHand hand;
+	public PlayerHand hand = new();
     public List<Card> Cards { get; set; }
 	public List<Card> Get => Cards;
 
