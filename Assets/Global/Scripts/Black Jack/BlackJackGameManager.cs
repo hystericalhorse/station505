@@ -182,14 +182,8 @@ public class BlackJackGameManager : MonoBehaviour
         {
 			winnerBox.text = "It's a Draw";
 		}
-
-		GameManager.instance.currentBet = 0;
-		StartCoroutine(WaitThreeSeconds(() => {
-            GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-            BJUI.UIReset();
-			RestartGame();
-		}));
+		
+		StartCoroutine(WaitThreeSeconds());
 	}
 
     private void RestartGame()
@@ -204,10 +198,13 @@ public class BlackJackGameManager : MonoBehaviour
         
     }
 
-    private delegate void AfterThreeSeconds();
-    private IEnumerator WaitThreeSeconds(AfterThreeSeconds afterDel = null)
+    private IEnumerator WaitThreeSeconds()
     {
-        yield return new WaitForSeconds(3f);
-        afterDel?.Invoke();
-    }
+		GameManager.instance.currentBet = 0;
+		yield return new WaitForSeconds(3f);
+		GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
+		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+		BJUI.UIReset();
+		RestartGame();
+	}
 }

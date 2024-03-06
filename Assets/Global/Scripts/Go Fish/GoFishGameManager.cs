@@ -238,7 +238,7 @@ public class GoFishGameManager : MonoBehaviour
                         GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
                     }
                     WaitThreeSeconds();
-                    RestartGame();
+                    
                 }
             }
         }
@@ -252,6 +252,7 @@ public class GoFishGameManager : MonoBehaviour
     private IEnumerator WaitThreeSeconds()
     {
         yield return new WaitForSeconds(3f);
-    }
+		RestartGame();
+	}
 
 }

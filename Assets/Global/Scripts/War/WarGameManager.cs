@@ -126,21 +126,16 @@ public class WarGameManager : MonoBehaviour
 		{
 			winnerBox.text = "Player Won Game";
 			GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-			StartCoroutine(WaitFiveSeconds(() => {
-				RestartGame();
-			}));
 		}
 		else if (dealerPoints >= 10)
 		{
 			winnerBox.text = "Dealer Won Game";
-			StartCoroutine(WaitFiveSeconds(() => {
-				RestartGame();
-			}));
 		}
+
+		StartCoroutine(WaitFiveSeconds());
 	}
 
-	private delegate void AfterThreeSeconds();
-	private IEnumerator WaitFiveSeconds(AfterThreeSeconds afterDel = null)
+	private IEnumerator WaitFiveSeconds()
 	{
 		playerPointText.text = "000";
 		dealerPointText.text = "000";
@@ -148,7 +143,7 @@ public class WarGameManager : MonoBehaviour
 		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 		warUI.ResetUI();
 		yield return new WaitForSeconds(5f);
-		afterDel?.Invoke();
+		RestartGame();
 	}
 
 	private void ResetWinnerBoxText()
