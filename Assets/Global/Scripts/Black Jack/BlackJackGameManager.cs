@@ -132,6 +132,7 @@ public class BlackJackGameManager : MonoBehaviour
         bool done = false;
         while (!done)
         {
+            wheeler.myHand.hand = dealerHand;
 			switch (wheeler.PlayBlackjack())
 			{
 				default:
