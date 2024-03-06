@@ -168,6 +168,7 @@ public class PokerGameManager : MonoBehaviour
 
     private void DealerTurn()
     {
+        wheeler.myHand.hand = dealerHand;
         wheeler.PlayPoker(ref deck, ref deck);
 
         DetermineWinner();
