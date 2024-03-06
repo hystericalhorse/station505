@@ -91,7 +91,6 @@ public class Deck
 	{
 		Card card = Cards[0];
 		Cards.Remove(Cards[0]);
-		hand.DrawCardFromDeck(card);
 		return card;
 	}
 
