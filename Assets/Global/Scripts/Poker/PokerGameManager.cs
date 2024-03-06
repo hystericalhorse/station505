@@ -87,27 +87,14 @@ public class PokerGameManager : MonoBehaviour
     // Deals Hand to Player and Dealer
     private void DealClicked()
     {
-        if (deck == null || deck.Get.Count == 0)
-        {
-            Debug.Log("Deck is Empty/Null");
-        }
+        RestartGame();
 
         deck.Shuffle();
 
-        if (playerHand == null)
+		for (int i = 0; i < 5; i++)
         {
-            playerHand = new();
-        }
-
-        if (dealerHand == null)
-        {
-            dealerHand = new();
-        }
-
-        for (int i = 0; i < 5; i++)
-        {
-            playerHand.Add(deck.Draw());
-            AudioManager.instance.PlaySound("PlayCard");
+			playerHand.Add(deck.Draw());
+			AudioManager.instance.PlaySound("PlayCard");
         }
 
         for (int i = 0; i < 5; i++)
@@ -195,6 +182,7 @@ public class PokerGameManager : MonoBehaviour
         dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
+        deck.hand = playerHandScript;
     }
 
     private IEnumerator WaitThreeSeconds()

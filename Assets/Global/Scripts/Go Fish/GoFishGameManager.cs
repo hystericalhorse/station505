@@ -53,21 +53,14 @@ public class GoFishGameManager : MonoBehaviour
     private void InitializeDeck()
     {
         deck = new Deck();
+		deck.hand = playerHandScript;
+		deck.Shuffle();
     }
 
     // Deals Cards to Player and Opponent
     private void DealClicked()
     {
-        if (deck == null || deck.Get.Count == 0)
-        {
-            Debug.Log("Deck is Empty/Null");
-            return;
-        }
-
-        deck.Shuffle();
-
-        playerHand = new List<Card>();
-        opponentHand = new List<Card>();
+        RestartGame();
 
         // Deal 7 cards to each player
         DealCards(playerHand, 7);
@@ -186,7 +179,7 @@ public class GoFishGameManager : MonoBehaviour
         opponentHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
-        InitializeDeck();
+		InitializeDeck();
     }
 
 

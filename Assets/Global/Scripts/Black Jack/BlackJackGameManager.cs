@@ -80,12 +80,8 @@ public class BlackJackGameManager : MonoBehaviour
     // Deals Cards to Player and Dealer
     private void DealClicked()
     {
-		deck = new();
-
-		deck.Shuffle();
-
-		playerHand = new();
-		dealerHand = new();
+        RestartGame();
+        deck.Shuffle();
 
         for (int i = 0; i < 2; i++) 
         {
@@ -180,6 +176,7 @@ public class BlackJackGameManager : MonoBehaviour
         dealerHand = new();
         winnerBox.text = string.Empty;
         playerHandScript.DeleteAllCards();
+        deck.hand = playerHandScript;
     }
 
     private IEnumerator WaitThreeSeconds()
