@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class CardObject : MonoBehaviour
+public class CardObject : MonoBehaviour, Interactable
 {
     public Card card;
     public Renderer cardRenderer;  // Reference to the Renderer component for setting the texture
     public Material[] cardTextures; // Array of textures for each card
+
+    public delegate void Interaction();
+    public Interaction onInteract;
 
     bool faceDown = false;
 
@@ -288,5 +292,27 @@ public class CardObject : MonoBehaviour
 
 
         cardRenderer.material = material;
+    }
+
+	public void OnMouseOver()
+	{
+		if (Input.GetMouseButtonDown(0))
+        {
+            OnInteract();
+        }
+	}
+
+	public void OnInteract() => onInteract?.Invoke();
+
+    public void PokerDiscard(ref PokerGameManager poker)
+    {
+        poker.playerHand.Remove(card);
+        poker.playerHandScript.DeleteCard(gameObject);
+
+        var new_card = poker.deck.Draw();
+        poker.playerHand.Add(new_card);
+        poker.playerHandScript.DrawCardFromDeck(new_card);
+
+        poker.playerHandScript.UpdateHand();
     }
 }

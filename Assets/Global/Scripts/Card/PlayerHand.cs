@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHand : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerHand : MonoBehaviour
     public Transform tableTransform; // Reference to the table object
 
     public Deck deck;
-    private List<GameObject> cards = new List<GameObject>();
+    public List<GameObject> cards = new List<GameObject>();
     private bool isMovingCardToTable = false;
 
     void Start()
@@ -59,7 +60,7 @@ public class PlayerHand : MonoBehaviour
     }
 
 
-    public void UpdateCardObject(GameObject cardObject, Card card)
+	public void UpdateCardObject(GameObject cardObject, Card card)
     {
         CardObject cardObjectScript = cardObject.GetComponent<CardObject>();
 
@@ -78,6 +79,25 @@ public class PlayerHand : MonoBehaviour
         if (cards.Count <= index) return;
 
         cards[(int)index].GetComponent<CardObject>().FlipCard();
+    }
+
+    public void DeleteCard(GameObject cardObj)
+    {
+        cards.Remove(cardObj);
+        Destroy(cardObj);
+
+        UpdateHand();
+    }
+
+    public void UpdateHand()
+    {
+		//float xOffset = (float)cards.Count * cardSpacing - (float)(maxCards - 1) / 2.0f * cardSpacing;
+		for (int i = 0; i < cards.Count; i++)
+        {
+            float xOffset = (float)(i+1) * cardSpacing - (float)(maxCards - 1) / 2.0f * cardSpacing;
+            cards[i].transform.position = transform.position + new Vector3(-0.5f, cardSpawnHeight, xOffset);
+            cards[i].GetComponent<HoverCard>().Initialize(cardHoverDistance);
+		}
     }
 
     //void UpdateCardPositions()

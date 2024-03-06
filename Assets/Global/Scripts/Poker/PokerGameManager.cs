@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class PokerGameManager : MonoBehaviour
 {
+    public PokerGameManager me;
+
     // Game Buttons
     [SerializeField] private Button dealBtn;
     [SerializeField] private Button hitBtn;
@@ -22,13 +24,13 @@ public class PokerGameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winnerBox;
 
     // Player Hand
-    private List<Card> playerHand;
+    public List<Card> playerHand;
 
 	// Dealer Hand 
 	private List<Card> dealerHand;
 
     // Deck 
-    private Deck deck = new();
+    public Deck deck = new();
     public PlayerHand playerHandScript;
 
     // AI Instance
@@ -40,6 +42,7 @@ public class PokerGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        me = this;
         wheeler = new Wheeler();
 
         // Click Listeners 
@@ -93,19 +96,22 @@ public class PokerGameManager : MonoBehaviour
 
 		for (int i = 0; i < 5; i++)
         {
-			playerHand.Add(deck.Draw());
-			AudioManager.instance.PlaySound("PlayCard");
-        }
-
-        for (int i = 0; i < 5; i++)
-        {
-            dealerHand.Add(deck.Draw());
+            var card = deck.Draw();
+			playerHand.Add(card);
+			dealerHand.Add(deck.Draw());
 			AudioManager.instance.PlaySound("PlayCard");
         }
 
         foreach (var card in playerHand)
         {
             playerHandScript.DrawCardFromDeck(card);
+        }
+
+        foreach (var card in playerHandScript.cards)
+        {
+            card.GetComponent<CardObject>().onInteract += () => {
+                card.GetComponent<CardObject>().PokerDiscard(ref me);
+			};
         }
     }
 
@@ -118,20 +124,13 @@ public class PokerGameManager : MonoBehaviour
         {
             winnerBox.text = "Player Wins with " + CardAlgorithms.EvaluateHand(playerHand.ToArray(), out playerHighCard).ToString();
             GameManager.instance.SetMoney( GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-            GameManager.instance.currentBet = 0;
-            StartCoroutine(WaitThreeSeconds());
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-			RestartGame();
-            return;
+            StartCoroutine(WaitThreeSecondsThenReset());
         }
         if (player < dealer) 
         {
             winnerBox.text = "Dealer Wins with " + CardAlgorithms.EvaluateHand(playerHand.ToArray(), out dealerHighCard).ToString();
-            GameManager.instance.currentBet = 0;
-            StartCoroutine(WaitThreeSeconds());
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-			RestartGame();
-            return;
+            
+            StartCoroutine(WaitThreeSecondsThenReset());
 		}
 
         if (player == dealer)
@@ -140,37 +139,29 @@ public class PokerGameManager : MonoBehaviour
             {
                 winnerBox.text = "Player Wins with " + playerHighCard.ToString();
 				GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-				GameManager.instance.currentBet = 0;
-				StartCoroutine(WaitThreeSeconds());
-				GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-				RestartGame();
-                return;
+				StartCoroutine(WaitThreeSecondsThenReset());
             }
             else if (playerHighCard.rank < dealerHighCard.rank)
             {
                 winnerBox.text = "Dealer Wins with " + dealerHighCard.ToString();
-                GameManager.instance.currentBet = 0;
-                StartCoroutine(WaitThreeSeconds());
-                RestartGame();
-				return;
+                StartCoroutine(WaitThreeSecondsThenReset());
 			}
             else
             {
                 // Split
                 GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet);
                 winnerBox.text = "Dealer Wins Tie";
-                StartCoroutine(WaitThreeSeconds());
-				GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-				RestartGame();
-				return;
 			}
-            
-        }
+
+			StartCoroutine(WaitThreeSecondsThenReset());
+		}
     }
 
+    Deck discards = new(0);
     private void DealerTurn()
     {
-        wheeler.PlayPoker(ref deck, ref deck);
+        wheeler.myHand.hand = dealerHand;
+        wheeler.PlayPoker(ref deck, ref discards);
 
         DetermineWinner();
     }
@@ -184,8 +175,14 @@ public class PokerGameManager : MonoBehaviour
         playerHandScript.DeleteAllCards();
     }
 
-    private IEnumerator WaitThreeSeconds()
+    private IEnumerator WaitThreeSecondsThenReset()
     {
-        yield return new WaitForSeconds(3f);
-    }
+		GameManager.instance.currentBet = 0;
+
+		yield return new WaitForSeconds(3f);
+
+		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+		RestartGame();
+
+	}
 }

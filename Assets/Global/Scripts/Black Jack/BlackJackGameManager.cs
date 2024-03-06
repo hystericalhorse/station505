@@ -129,7 +129,21 @@ public class BlackJackGameManager : MonoBehaviour
 
     private void DealerTurn()
     {
-        wheeler.PlayBlackjack();
+        bool done = false;
+        while (!done)
+        {
+			switch (wheeler.PlayBlackjack())
+			{
+				default:
+				case Blackjack.Move.Stand:
+                    done = true;
+					break;
+				case Blackjack.Move.Hit:
+                    dealerHand.Add(deck.Draw());
+					break;
+			}
+		}
+        
         DetermineWinner();
     }
 
@@ -145,28 +159,26 @@ public class BlackJackGameManager : MonoBehaviour
 		if (playerValue > 21 && dealerValue < 21)
         {
             winnerBox.text = "Player Busts. Dealer Wins";
-            GameManager.instance.currentBet = 0;
+            
         } else if (playerValue < 21 && dealerValue > 21) 
         {
             winnerBox.text = "Dealer Busts. Player Wins";
             GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-            GameManager.instance.currentBet = 0;
 			
         } else if (playerValue > dealerValue)
         {
             winnerBox.text = "Player Wins with " + playerValue.ToString();
             GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
-            GameManager.instance.currentBet = 0;
         } else if (dealerValue > playerValue)
         {
             winnerBox.text = "Dealer Wins with " + dealerValue.ToString();
-            GameManager.instance.currentBet = 0;
         }
         else
         {
             winnerBox.text = "It's a Draw";
         }
 
+		GameManager.instance.currentBet = 0;
 		StartCoroutine(WaitThreeSeconds(() => {
             GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
 			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
