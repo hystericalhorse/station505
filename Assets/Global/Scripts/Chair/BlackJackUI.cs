@@ -26,13 +26,13 @@ public class BlackJackUI : MonoBehaviour
 
     public void Stand()
     {
+        hitBTN.gameObject.SetActive(false);
+        standBTN.gameObject.SetActive(false);
         Invoke(nameof(UIReset), 3);
     }
 
 	public void UIReset()
 	{
-		standBTN.gameObject.SetActive(false);
-        hitBTN.gameObject.SetActive(false);
         dealBTN.gameObject.SetActive(true);
 	}
 
