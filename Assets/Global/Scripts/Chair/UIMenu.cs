@@ -19,6 +19,7 @@ public class UIMenu : MonoBehaviour
     [SerializeField] public AudioSource robotVoiceBlackJack;
     [SerializeField] public AudioSource robotVoicePoker;
     [SerializeField] public AudioSource robotVoiceGoFish;
+    [SerializeField] public AudioSource robotVoiceWar;
 
     private GameObject currentUI;
 
@@ -87,7 +88,7 @@ public class UIMenu : MonoBehaviour
 			betMenu.quitGame.Stop();
 		}
 
-		robotVoiceGoFish.Play();
+		robotVoiceWar.Play();
 	}
 
 	public void PokerSelected()

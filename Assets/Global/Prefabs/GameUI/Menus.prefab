@@ -554,7 +554,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2881586454541960588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4205,6 +4205,9 @@ MonoBehaviour:
   chair: {fileID: 0}
   betMenu: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 72fb9c99a82d80743bdd7b31f003f602, type: 2}
+  hand: {fileID: 0}
+  HoloCard: {fileID: 0}
+  NormalCard: {fileID: 0}
 --- !u!82 &2674831673341889028
 AudioSource:
   m_ObjectHideFlags: 0
