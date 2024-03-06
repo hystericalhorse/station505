@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -84,6 +85,7 @@ public class BlackJackGameManager : MonoBehaviour
         RestartGame();
         deck.Shuffle();
 
+	    int handValue = 0;
         for (int i = 0; i < 2; i++) 
         {
             Card drawnCard = deck.Draw();
@@ -92,8 +94,10 @@ public class BlackJackGameManager : MonoBehaviour
 
 			dealerHand.Add(deck.Draw());
 			AudioManager.instance.PlaySound("PlayCard");
+		    handValue = GetCardValues(playerHand.ToArray());
         }
 
+        playerValueText.text = handValue.ToString();
         playerHandScript.FlipCard(0);
     }
 
