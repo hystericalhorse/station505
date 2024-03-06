@@ -65,13 +65,11 @@ public class BlackJackGameManager : MonoBehaviour
 
 		Card drawnCard = deck.Draw();
 		playerHand.Add(drawnCard);
-
-		//placeCard.Play();
+		playerHandScript.DrawCardFromDeck(drawnCard);
 
 		int handValue = GetCardValues(playerHand.ToArray());
-        if (handValue > 21) 
+        if (handValue > 21)
         {
-            Debug.Log("Player Lost");
             DetermineWinner();
         }
     }
@@ -91,6 +89,8 @@ public class BlackJackGameManager : MonoBehaviour
 			dealerHand.Add(deck.Draw());
 			AudioManager.instance.PlaySound("PlayCard");
         }
+
+        playerHandScript.FlipCard(0);
     }
 
     // Grabs the Card Values of Respective Hand
@@ -128,48 +128,41 @@ public class BlackJackGameManager : MonoBehaviour
 
     private void DetermineWinner() 
     {
-        int playerValue = GetCardValues(playerHand.ToArray());
+		playerHandScript.FlipCard(0);
+
+		int playerValue = GetCardValues(playerHand.ToArray());
         int dealerValue = GetCardValues(dealerHand.ToArray());
 
         if (playerValue > 21 && dealerValue < 21)
         {
             winnerBox.text = "Player Busts. Dealer Wins";
             GameManager.instance.currentBet = 0;
-            StartCoroutine(WaitThreeSeconds());
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-			RestartGame();
         } else if (playerValue < 21 && dealerValue > 21) 
         {
             winnerBox.text = "Dealer Busts. Player Wins";
             GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
-            StartCoroutine(WaitThreeSeconds());
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-			RestartGame();
+			
         } else if (playerValue > dealerValue)
         {
             winnerBox.text = "Player Wins with " + playerValue.ToString();
             GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
             GameManager.instance.currentBet = 0;
-            StartCoroutine(WaitThreeSeconds());
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-			RestartGame();
         } else if (dealerValue > playerValue)
         {
             winnerBox.text = "Dealer Wins with " + dealerValue.ToString();
             GameManager.instance.currentBet = 0;
-            StartCoroutine(WaitThreeSeconds());
-			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
-			RestartGame();
         }
         else
         {
             winnerBox.text = "It's a Draw";
-            StartCoroutine(WaitThreeSeconds());
+        }
+
+		StartCoroutine(WaitThreeSeconds(() => {
 			GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
 			RestartGame();
-        }
-    }
+		}));
+	}
 
     private void RestartGame()
     {
@@ -180,8 +173,10 @@ public class BlackJackGameManager : MonoBehaviour
         playerHandScript.DeleteAllCards();
     }
 
-    private IEnumerator WaitThreeSeconds()
+    private delegate void AfterThreeSeconds();
+    private IEnumerator WaitThreeSeconds(AfterThreeSeconds afterDel = null)
     {
         yield return new WaitForSeconds(3f);
+        afterDel?.Invoke();
     }
 }

@@ -73,6 +73,13 @@ public class PlayerHand : MonoBehaviour
         }
     }
 
+    public void FlipCard(uint index)
+    {
+        if (cards.Count <= index) return;
+
+        cards[(int)index].GetComponent<CardObject>().FlipCard();
+    }
+
     //void UpdateCardPositions()
     //{
     //    Camera mainCamera = Camera.main;

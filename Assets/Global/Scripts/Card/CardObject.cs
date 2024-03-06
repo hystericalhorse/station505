@@ -8,12 +8,20 @@ public class CardObject : MonoBehaviour
     public Renderer cardRenderer;  // Reference to the Renderer component for setting the texture
     public Material[] cardTextures; // Array of textures for each card
 
+    bool faceDown = false;
+
     // Start is called before the first frame update
     void Start()
     {
         FaceCamera();
         SetTexture(card.rank, card.suit);
     }
+
+    [ContextMenu("flip")]
+    public void FlipCard()
+    {
+        faceDown = !faceDown;
+	}
 
     void FaceCamera()
     {
@@ -25,12 +33,27 @@ public class CardObject : MonoBehaviour
             Debug.LogWarning("Main camera not found.");
     }
 
+    public void FaceDown()
+    {
+        FaceCamera();
+        var rot = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(rot.x, rot.y+180, rot.z);
+	}
+
     // Update is called once per frame
     void Update()
     {
-        FaceCamera();
-    }
+		if (faceDown)
+			FaceDown();
+		else
+			FaceCamera();
+	}
 
+    public void SetBackTexture()
+    {
+        cardRenderer.material = cardTextures[0];
+
+	}
     public void SetTexture(Rank rank, Suit suit)
     {
         if (cardRenderer == null)
