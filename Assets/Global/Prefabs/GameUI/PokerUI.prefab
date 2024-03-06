@@ -983,7 +983,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3688113904698505048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7356950565820292354}
+        m_TargetAssemblyTypeName: PokerUIScript, Assembly-CSharp
+        m_MethodName: deal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2397803872143934105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1181,7 @@ MonoBehaviour:
   betBtn: {fileID: 3647493186736280592}
   placeCard: {fileID: 0}
   winnerBox: {fileID: 7117419035100876264}
+  playerHandScript: {fileID: 0}
 --- !u!1 &3995462720314895984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2628952796477789015}
+  - component: {fileID: 7356950565820292354}
   m_Layer: 0
   m_Name: PokerUI
   m_TagString: Untagged
@@ -1426,6 +1440,22 @@ Transform:
   - {fileID: 1784533642549034915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7356950565820292354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324362073102173212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf25055cf7aa7e641a8ae096e68bee05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBtn: {fileID: 1315247394297964091}
+  standBtn: {fileID: 7609926868603573275}
+  foldBtn: {fileID: 5706225598399007652}
+  dealBtn: {fileID: 942160468610446201}
 --- !u!1 &7187305350128313825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1844,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8098377701591357605}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7356950565820292354}
+        m_TargetAssemblyTypeName: PokerUIScript, Assembly-CSharp
+        m_MethodName: Stand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7355597399326603988
 GameObject:
   m_ObjectHideFlags: 0
