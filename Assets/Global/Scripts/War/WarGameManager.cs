@@ -49,6 +49,9 @@ public class WarGameManager : MonoBehaviour
 
 	private void HitClicked()
 	{
+
+		playerHandScript.DeleteAllCards();
+
 		Card playerCard = playerHand.Draw();
 
 		Card dealerCard = dealerHand.Draw();
@@ -70,6 +73,8 @@ public class WarGameManager : MonoBehaviour
 			tiePoints++;
 			winnerBox.text = "Round was a TIE";
 		}
+
+		playerHandScript.DrawCardFromDeck(playerCard);
 
 		playerPointText.text = playerPoints.ToString();
 		dealerPointText.text = dealerPoints.ToString();
