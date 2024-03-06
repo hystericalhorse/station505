@@ -12,6 +12,7 @@ public class PlayerHand : MonoBehaviour
     public float cardSlantAngle = 10f;
     public float cardHoverDistance = 0.5f;
     public float maxSpreadDistance = 5f;
+    public bool Holo = false;
 
     public Transform tableTransform; // Reference to the table object
 
@@ -26,15 +27,13 @@ public class PlayerHand : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-        }
 
         //UpdateCardPositions();
     }
     public void DrawCardFromDeck(Card drawnCard)
     {
+
+
         if (cards.Count < maxCards)
         {
             float xOffset = (float)cards.Count * cardSpacing - (float)(maxCards - 1) / 2.0f * cardSpacing;
