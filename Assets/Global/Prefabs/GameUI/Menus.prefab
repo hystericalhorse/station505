@@ -3193,7 +3193,7 @@ GameObject:
   - component: {fileID: 350829040002699447}
   - component: {fileID: 4814101892988677642}
   m_Layer: 0
-  m_Name: GoFishBTN
+  m_Name: WarBTN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4194,7 +4194,7 @@ MonoBehaviour:
   deckMenu: {fileID: 5072185383719363850}
   blackJackUI: {fileID: 0}
   pokerUI: {fileID: 0}
-  goFishUI: {fileID: 0}
+  WarUI: {fileID: 0}
   betUI: {fileID: 0}
   robotVoiceBlackJack: {fileID: 2674831673341889028}
   robotVoicePoker: {fileID: 5861648662470124451}
