@@ -17,6 +17,10 @@ public class WarGameManager : MonoBehaviour
 
     // UI
     [SerializeField] private TextMeshProUGUI winnerBox;
+    [SerializeField] private TextMeshProUGUI playerPointText;
+    [SerializeField] private TextMeshProUGUI dealerPointText;
+
+	[SerializeField] private WarUIScript warUI;
 
     // Cards
 	private List<Card> playerHand = new();
@@ -66,6 +70,8 @@ public class WarGameManager : MonoBehaviour
 			winnerBox.text = "Round was a TIE";
 		}
 
+		playerPointText.text = playerPoints.ToString();
+		dealerPointText.text = dealerPoints.ToString();
 		// check winner
 		CheckWinner();
 
@@ -116,6 +122,7 @@ public class WarGameManager : MonoBehaviour
 		if (playerPoints >= 10)
 		{
 			winnerBox.text = "Player Won Game";
+			GameManager.instance.SetMoney(GameManager.instance.GetMoney() + GameManager.instance.currentBet * 2);
 			StartCoroutine(WaitThreeSeconds(() => {
 				RestartGame();
 			}));
@@ -132,6 +139,9 @@ public class WarGameManager : MonoBehaviour
 	private delegate void AfterThreeSeconds();
 	private IEnumerator WaitThreeSeconds(AfterThreeSeconds afterDel = null)
 	{
+		GameManager.instance.BetUI.GetComponent<BetUIMenu>().UpdateValues();
+		GameManager.instance.BetUI.GetComponent<BetUIMenu>().BetReset();
+		warUI.ResetUI();
 		yield return new WaitForSeconds(3f);
 		afterDel?.Invoke();
 	}
